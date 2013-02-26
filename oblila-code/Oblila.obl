@@ -1,0 +1,38 @@
+class Complex {
+   var float Real;
+   var float Imag;
+}
+
+proc Swap(var int a, var int b) {
+   var int tmp;
+   tmp := a;
+   a := b;
+   b := tmp;
+}
+
+proc ret Complex Add(Complex a, Complex b) {
+   var Complex retval;
+   retval := new Complex;
+   retval.Real := a.Real + b.Real;
+   retval.Imag := a.Imag + b.Imag;
+   return retval;
+}
+
+proc ret int Max(int a, int b) {
+   if a > b then {
+      return a;
+   }
+   return b;
+}
+
+proc Main() {
+   proc ret float Square(float val) {
+      return val # 2.0;
+   }
+   var float num;
+   num := 6.480740;
+   print_float( num );
+   print_str( " squared is " );
+   print_float( Square( num ) );
+   return;
+}

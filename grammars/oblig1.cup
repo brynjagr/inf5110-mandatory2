@@ -1,0 +1,59 @@
+package oblig1parser;
+import java_cup.runtime.*;
+import syntaxtree.*;
+import java.util.*;
+
+parser code {:
+
+:};
+
+/* Terminals */
+terminal                        CLASS;
+terminal                        LBRACK, RBRACK;
+terminal                        LPAR, RPAR;
+terminal                        SEMI, RETURN;
+terminal                        PROCEDURE;
+
+/********************/
+terminal                        VAR;
+terminal                        INT;
+/*******************/
+terminal String                 ID;
+terminal String                 STRING_LITERAL;
+
+/* Non terminals */
+non terminal Program            program;
+non terminal List<Decl>         decl_list;
+non terminal Decl          class_decl, decl;
+
+/*****************/
+non terminal VarDecl            var_decl;
+non terminal Type               type;
+/*****************/
+
+
+/* The grammar */
+program                 ::= decl_list:dl
+                        {: RESULT = new Program(dl); :} 
+                        ;
+
+decl_list               ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
+                                      l.add(d);
+                                      RESULT = l; :} 
+                        |   decl_list:dl decl:d 
+                            {: dl.add(d); RESULT = dl; :}
+                        ;
+
+decl                    ::= class_decl:sd {: RESULT = sd; :}
+                        |   var_decl:vd {: RESULT = vd; :}
+                        ;
+                                  
+class_decl              ::= CLASS ID:name LBRACK var_decl:vd RBRACK
+                        {: RESULT = new ClassDecl(name,vd); :}
+                        ;
+
+var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarDecl(name, typename); :}
+                        ;
+
+type                    ::= INT {: RESULT = new Type("int"); :} 
+                        ;
