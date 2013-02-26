@@ -1,0 +1,7 @@
+checkout remote branch: git checkout -b <local_name> <remote_name> (f eks. remote_name = origin/workingbranch)
+push to existing or create new: git push origin <local_name>:<remote_name>
+switch local branch: git checkout <local_branch>
+create local: git checkout <local_name> <local_branch>
+
+git checkout -b lwork origin/working 
+git push origin lwork:working
