@@ -1,3 +1,6 @@
 (CLASS_DECL (NAME TestClass)
-	(VAR_DECL (TYPE int) (NAME Int))
+    (VAR_DECL (TYPE int) (NAME Int))
+    (VAR_DECL (TYPE int) (NAME asdf))
+    (VAR_DECL (TYPE int) (NAME asdfdfd))
+    (VAR_DECL (TYPE int) (NAME heihei))
 )

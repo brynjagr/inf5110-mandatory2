@@ -28,6 +28,7 @@ non terminal Decl          class_decl, decl;
 
 /*****************/
 non terminal VarDecl            var_decl;
+non terminal List<VarDecl>      var_decl_list;
 non terminal Type               type;
 /*****************/
 
@@ -48,11 +49,17 @@ decl                    ::= class_decl:sd {: RESULT = sd; :}
                         |   var_decl:vd {: RESULT = vd; :}
                         ;
                                   
-class_decl              ::= CLASS ID:name LBRACK var_decl:vd RBRACK
-                        {: RESULT = new ClassDecl(name,vd); :}
+class_decl              ::= CLASS ID:name LBRACK var_decl_list:vdl RBRACK
+                        {: RESULT = new ClassDecl(name,vdl); :}
                         ;
 
 var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarDecl(name, typename); :}
+                        ;
+
+var_decl_list           ::= var_decl:vd {: List<VarDecl> l = new LinkedList<VarDecl>();
+                                                            l.add(vd);
+                                                            RESULT = l; :}
+                        | var_decl_list:vdl var_decl:vd {: vdl.add(vd); RESULT = vdl; :}
                         ;
 
 type                    ::= INT {: RESULT = new Type("int"); :} 

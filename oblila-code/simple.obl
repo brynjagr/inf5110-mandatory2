@@ -1,4 +1,7 @@
 class TestClass {
-   var int Int; 
+   var int Int;
+   var int asdf;
+   var int asdfdfd;
+   var int heihei;
 }
 
