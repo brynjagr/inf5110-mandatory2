@@ -16,7 +16,7 @@ terminal                        PROCEDURE;
 
 /********************/
 terminal                        VAR;
-terminal                        INT;
+terminal                        INT, FLOAT, STRING, BOOL;
 terminal						COMMA;
 terminal						PROC;
 /*******************/
@@ -165,4 +165,8 @@ param_decl              ::= type:typename ID:name
 							
  
 type                    ::= INT {: RESULT = new Type("int"); :} 
-                        ;
+						| FLOAT {: RESULT = new Type("float"); :}
+						| STRING {: RESULT = new Type("string"); :}
+						| BOOL {: RESULT = new Type("bool"); :}
+						| ID:name {: RESULT = new Type(name); :}
+						;

@@ -4,6 +4,7 @@
 	(PARAM_DECL var (TYPE int) (NAME toehuteoh))
 	(PARAM_DECL (TYPE int) (NAME tehutehu))
 	(PARAM_DECL var (TYPE int) (NAME hei))
+	(VAR_DECL (TYPE TestProc) (NAME t))
 	(VAR_DECL (TYPE int) (NAME i))
 	(PROC_DECL (NAME TestProc2)
 	(PARAM_DECL var (TYPE int) (NAME toehuteoh))
