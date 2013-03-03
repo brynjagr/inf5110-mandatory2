@@ -16,7 +16,7 @@ public class ClassDecl extends Decl {
         for (VarDecl vd: varDeclList) {
             sb.append("\n    " + vd.printAst());
         }
-        sb.append("\n)");
+        sb.append(")\n");
         return sb.toString();
     }
 }
