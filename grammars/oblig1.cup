@@ -31,9 +31,12 @@ non terminal Decl          class_decl, decl;
 /*****************/
 non terminal VarDecl            var_decl;
 non terminal List<VarDecl>      var_decl_list, var_decl_list_bdy;
-non terminal List<ParamDecl>    param_decl_list, param_decl_list_bdy;
+non terminal List<ParamDecl>    param_decl_list, param_decl_list_bdy;	
 non terminal ParamDecl   	    param_decl;
 non terminal ProcDecl			proc_decl;
+non terminal List<Stmt>			stmt_list;
+non terminal Stmt				stmt;
+non terminal CallStmt			call_stmt;
 non terminal Type               type;
 /*****************/
 
@@ -96,9 +99,9 @@ var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarD
  * param_decl_list -> EMPTY | param_decl_list_bdy
  */
 param_decl_list		    ::= /* EMPTY */
-						{: RESULT = new LinkedList<ParamDecl>(); :}
+						{: 	RESULT = new LinkedList<ParamDecl>(); :}
 						|	param_decl_list_bdy:pdl 
-						{: RESULT = pdl; :}
+						{: 	RESULT = pdl; :}
 						;
 
 /*
@@ -118,7 +121,7 @@ param_decl_list_bdy     ::=	param_decl:pd
  */ 
 param_decl              ::= type:typename ID:name  
 						{:  RESULT = new ParamDecl(name, typename, false); :}
-						| VAR type:typename ID:name
+						| 	VAR type:typename ID:name
 						{:  RESULT = new ParamDecl(name, typename, true); :}
                         ;
 						
@@ -127,9 +130,39 @@ param_decl              ::= type:typename ID:name
  * proc_decl -> "proc" NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
 			  | "proc" "ret" TYPE NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
  */
- proc_decl				::= PROC ID:name LPAR param_decl_list:pdl RPAR LBRACK decl_list:dl RBRACK
-						{: RESULT = new ProcDecl(name,pdl,dl); :}
+ proc_decl				::= PROC ID:name LPAR param_decl_list:pdl RPAR LBRACK decl_list_bdy:dl stmt_list:sl RBRACK
+						{: RESULT = new ProcDecl(name,pdl,dl,sl); :}
 						;
 
+/*
+ * stmt_list -> {STMT}
+ * stmt_list -> stmt | stmt_list stmt
+ */
+ stmt_list				::= stmt:s
+						{: List<Stmt> l = new LinkedList<Stmt>();
+							l.add(s);
+							RESULT = l; :}
+						| stmt_list:sl stmt:s
+						{:	sl.add(s);
+							RESULT = sl;
+						:}
+						;
+						
+/*
+ * stmt -> assign_stmt ";" | if_stmt | while_stmt | return_stmt ";" | call_stmt ";"
+ */
+ stmt					::= call_stmt:cs SEMI
+						{: RESULT = cs; :}
+						;
+						
+/*
+ * call_stmt -> NAME "(" [ ACTUAL_PARAM { "," ACTUAL_PARAM } ] ")"
+ * call_stmt -> NAME "(" actual_param_list ")"
+ */
+ call_stmt				::= ID:name LPAR /* actual_param_list:apl */ RPAR
+						{: RESULT = new CallStmt(name); :}
+						;
+							
+ 
 type                    ::= INT {: RESULT = new Type("int"); :} 
                         ;

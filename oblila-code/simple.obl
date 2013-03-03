@@ -2,8 +2,10 @@ class TestClass {}
 proc TestProc (var int toehuteoh, int tehutehu, var int hei) { 
 
 	var int i;
-	proc TestProc (var int toehuteoh, int tehutehu, var int hei) { }
+	proc TestProc2 (var int toehuteoh, int tehutehu, var int hei) { var int i; TestProc(); }
 	class TestClass2 {var int i;}
+	
+	TestProc2();
 
 }
 
