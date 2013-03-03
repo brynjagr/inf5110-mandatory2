@@ -17,6 +17,7 @@ terminal                        PROCEDURE;
 /********************/
 terminal                        VAR;
 terminal                        INT;
+terminal						COMMA;
 /*******************/
 terminal String                 ID;
 terminal String                 STRING_LITERAL;
@@ -28,14 +29,16 @@ non terminal Decl          class_decl, decl;
 
 /*****************/
 non terminal VarDecl            var_decl;
-non terminal List<VarDecl>      var_decl_list;
+non terminal List<VarDecl>      var_decl_list, var_decl_list_bdy;
+non terminal List<ParamDecl>    param_decl_list, param_decl_list_bdy;
+non terminal ParamDecl   	    param_decl;
 non terminal Type               type;
 /*****************/
 
 
 /* The grammar */
-program                 ::= decl_list:dl
-                        {: RESULT = new Program(dl); :} 
+program                 ::= decl_list:dl param_decl_list:pdl
+                        {: for (ParamDecl pd : pdl) { System.out.println(pd.printAst()); } RESULT = new Program(dl); :} 
                         ;
 
 decl_list               ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
@@ -53,14 +56,61 @@ class_decl              ::= CLASS ID:name LBRACK var_decl_list:vdl RBRACK
                         {: RESULT = new ClassDecl(name,vdl); :}
                         ;
 
+/* 
+ * var_decl_list -> [var_decl_list_bdy] 
+ * var_decl_list -> EMPTY | var_decl_list_bdy
+ */
+var_decl_list		    ::= /* EMPTY */
+						{: RESULT = new LinkedList<VarDecl>(); :}
+						|	var_decl_list_bdy:vdl {: RESULT = vdl; :}	
+						;
+
+/*
+ * var_decl_list_bdy -> {var_decl}
+ * var_decl_list_bdy -> var_decl | var_decl_list_bdy var_decl
+ */
+var_decl_list_bdy       ::=	var_decl:vd 
+						{: List<VarDecl> l = new LinkedList<VarDecl>();
+                                         l.add(vd);
+                                         RESULT = l; :}
+                        | var_decl_list_bdy:vdl var_decl:vd {: vdl.add(vd); RESULT = vdl; :}
+						;
+						
 var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarDecl(name, typename); :}
                         ;
+						
+/* 
+ * param_decl_list -> [param_decl_list_bdy] 
+ * param_decl_list -> EMPTY | param_decl_list_bdy
+ */
+param_decl_list		    ::= /* EMPTY */
+						{: RESULT = new LinkedList<ParamDecl>(); :}
+						|	param_decl_list_bdy:pdl 
+						{: RESULT = pdl; :}
+						;
 
-var_decl_list           ::= var_decl:vd {: List<VarDecl> l = new LinkedList<VarDecl>();
-                                                            l.add(vd);
-                                                            RESULT = l; :}
-                        | var_decl_list:vdl var_decl:vd {: vdl.add(vd); RESULT = vdl; :}
+/*
+ * param_decl_list_bdy -> param_decl {"," PARAM_DECL}
+ * param_decl_list_bdy -> param_decl | param_decl_list_bdy "," param_decl 
+ */
+param_decl_list_bdy     ::=	param_decl:pd 
+						{: List<ParamDecl> l = new LinkedList<ParamDecl>();
+                                         l.add(pd);
+                                         RESULT = l; :}
+						| param_decl_list_bdy:pdl COMMA param_decl:pd 
+						{: pdl.add(pd); RESULT = pdl; :}
+						;
+/*
+ * param_decl -> ["var"] TYPE NAME
+ * param_decl -> TYPE NAME | "var" TYPE NAME
+ */ 
+param_decl              ::= type:typename ID:name  
+						{:  RESULT = new ParamDecl(name, typename, false); :}
+						| VAR type:typename ID:name
+						{:  RESULT = new ParamDecl(name, typename, true); :}
                         ;
+						
+
 
 type                    ::= INT {: RESULT = new Type("int"); :} 
                         ;
