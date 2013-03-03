@@ -4,10 +4,12 @@ import java.util.List;
 public class ProcDecl extends Decl {
 
 	List<ParamDecl> paramDeclList;
+	List<Decl> declList;
 
-	public ProcDecl(String name, List<ParamDecl> paramDeclList) {
+	public ProcDecl(String name, List<ParamDecl> paramDeclList, List<Decl> declList) {
 		super(name);
 		this.paramDeclList = paramDeclList;
+		this.declList = declList;
 	}
 	
 	public String printAst() {
@@ -20,8 +22,11 @@ public class ProcDecl extends Decl {
 			sb.append("\t");
 			sb.append(pd.printAst());
 		}
-		
-		// for (Decl d : declList) { }
+
+		for (Decl d : declList) { 
+			sb.append("\t");
+			sb.append(d.printAst());
+		}
 		// for (Stmt s : stmtList) { }
 		
 		sb.append(")\n");

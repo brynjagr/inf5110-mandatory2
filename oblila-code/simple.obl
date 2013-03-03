@@ -1,3 +1,9 @@
 class TestClass {}
-var int toehuteoh, int tehutehu, var int hei
+proc TestProc (var int toehuteoh, int tehutehu, var int hei) { 
+
+	var int i;
+	proc TestProc (var int toehuteoh, int tehutehu, var int hei) { }
+	class TestClass2 {var int i;}
+
+}
 

@@ -1,2 +1,17 @@
 (CLASS_DECL (NAME TestClass)
 )
+(PROC_DECL (NAME TestProc)
+	(PARAM_DECL var (TYPE int) (NAME toehuteoh))
+	(PARAM_DECL (TYPE int) (NAME tehutehu))
+	(PARAM_DECL var (TYPE int) (NAME hei))
+	(VAR_DECL (TYPE int) (NAME i))
+	(PROC_DECL (NAME TestProc)
+	(PARAM_DECL var (TYPE int) (NAME toehuteoh))
+	(PARAM_DECL (TYPE int) (NAME tehutehu))
+	(PARAM_DECL var (TYPE int) (NAME hei))
+)
+	(CLASS_DECL (NAME TestClass2)
+    (VAR_DECL (TYPE int) (NAME i))
+
+))
+

@@ -10,6 +10,6 @@ public class VarDecl extends Decl {
     }
 
     public String printAst() {
-        return "(VAR_DECL " + type.printAst() + " (NAME " + name + "))";
+        return "(VAR_DECL " + type.printAst() + " (NAME " + name + "))\n";
     }
 }
