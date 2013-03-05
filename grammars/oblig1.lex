@@ -26,13 +26,31 @@ Identifier = [:jletter:] [:jletterdigit:]*
 <YYINITIAL>{
         {WhiteSpace}                    {}
         "class"                         { return symbol(sym.CLASS); }
-        "{"			        { return symbol(sym.LBRACK); }
-        "}"				{ return symbol(sym.RBRACK); }
+        "{"			        			{ return symbol(sym.LBRACK); }
+        "}"								{ return symbol(sym.RBRACK); }
         "("                             { return symbol(sym.LPAR); }
         ")"                             { return symbol(sym.RPAR); }
         ";"                             { return symbol(sym.SEMI); }
+		","                             { return symbol(sym.COMMA); }
         "var"                           { return symbol(sym.VAR); }
         "int"                           { return symbol(sym.INT); }
+		"float"							{ return symbol(sym.FLOAT); }
+		"string"						{ return symbol(sym.STRING); }
+		"bool"							{ return symbol(sym.BOOL); }
+		"proc"                          { return symbol(sym.PROC); }
+		"&&"							{ return symbol(sym.AND); }
+		"||"							{ return symbol(sym.OR); }
+		"<="							{ return symbol(sym.LEQ); }
+		"<>"							{ return symbol(sym.NEQ); }
+		">=								{ return symbol(sym.GEQ); }
+		"<"								{ return symbol(sym.LESS); }
+		">"								{ return symbol(sym.GTR); }
+		"="								{ return symbol(sym.EQ); }
+		"+"								{ return symbol(sym.PLUS); }
+		"-"								{ return symbol(sym.SUB); }
+		"*"								{ return symbol(sym.MULT); }
+		"/"								{ return symbol(sym.DIV); }
+		"#"								{ return symbol(sym.EXP); }
         {Identifier}                    { return symbol(sym.ID,yytext()); }
         }
 

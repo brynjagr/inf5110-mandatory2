@@ -16,18 +16,30 @@ terminal                        PROCEDURE;
 
 /********************/
 terminal                        VAR;
-terminal                        INT;
+terminal                        INT, FLOAT, STRING, BOOL;
+terminal						COMMA;
+terminal						PROC;
+terminal						AND, OR;
+terminal						LESS, LEQ, GTR, GEQ, EQ, NEQ;
+terminal						PLUS, SUB, MULT, DIV, EXP;
 /*******************/
 terminal String                 ID;
 terminal String                 STRING_LITERAL;
 
 /* Non terminals */
 non terminal Program            program;
-non terminal List<Decl>         decl_list;
+non terminal List<Decl>         decl_list, decl_list_bdy;
 non terminal Decl          class_decl, decl;
 
 /*****************/
 non terminal VarDecl            var_decl;
+non terminal List<VarDecl>      var_decl_list, var_decl_list_bdy;
+non terminal List<ParamDecl>    param_decl_list, param_decl_list_bdy;	
+non terminal ParamDecl   	    param_decl;
+non terminal ProcDecl			proc_decl;
+non terminal List<Stmt>			stmt_list;
+non terminal Stmt				stmt;
+non terminal CallStmt			call_stmt;
 non terminal Type               type;
 /*****************/
 
@@ -36,24 +48,164 @@ non terminal Type               type;
 program                 ::= decl_list:dl
                         {: RESULT = new Program(dl); :} 
                         ;
-
-decl_list               ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
+						
+decl_list				::= /* EMPTY */
+						{: RESULT = new LinkedList<Decl>(); :}
+						| decl_list_bdy:dl
+						{: RESULT = dl; :}
+						;
+						
+decl_list_bdy           ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
                                       l.add(d);
                                       RESULT = l; :} 
-                        |   decl_list:dl decl:d 
+                        |   decl_list_bdy:dl decl:d 
                             {: dl.add(d); RESULT = dl; :}
                         ;
 
-decl                    ::= class_decl:sd {: RESULT = sd; :}
-                        |   var_decl:vd {: RESULT = vd; :}
-                        ;
+decl                    ::= class_decl:sd 
+						{: RESULT = sd; :}
+                        |   var_decl:vd 
+						{: RESULT = vd; :}
+						| proc_decl:pd 
+                        {: RESULT = pd; :}
+						;
                                   
-class_decl              ::= CLASS ID:name LBRACK var_decl:vd RBRACK
-                        {: RESULT = new ClassDecl(name,vd); :}
+class_decl              ::= CLASS ID:name LBRACK var_decl_list:vdl RBRACK
+                        {: RESULT = new ClassDecl(name,vdl); :}
                         ;
 
+/* 
+ * var_decl_list -> [var_decl_list_bdy] 
+ * var_decl_list -> EMPTY | var_decl_list_bdy
+ */
+var_decl_list		    ::= /* EMPTY */
+						{: RESULT = new LinkedList<VarDecl>(); :}
+						|	var_decl_list_bdy:vdl {: RESULT = vdl; :}	
+						;
+
+/*
+ * var_decl_list_bdy -> {var_decl}
+ * var_decl_list_bdy -> var_decl | var_decl_list_bdy var_decl
+ */
+var_decl_list_bdy       ::=	var_decl:vd 
+						{: List<VarDecl> l = new LinkedList<VarDecl>();
+                                         l.add(vd);
+                                         RESULT = l; :}
+                        | var_decl_list_bdy:vdl var_decl:vd {: vdl.add(vd); RESULT = vdl; :}
+						;
+						
 var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarDecl(name, typename); :}
                         ;
+						
+/* 
+ * param_decl_list -> [param_decl_list_bdy] 
+ * param_decl_list -> EMPTY | param_decl_list_bdy
+ */
+param_decl_list		    ::= /* EMPTY */
+						{: 	RESULT = new LinkedList<ParamDecl>(); :}
+						|	param_decl_list_bdy:pdl 
+						{: 	RESULT = pdl; :}
+						;
 
-type                    ::= INT {: RESULT = new Type("int"); :} 
+/*
+ * param_decl_list_bdy -> param_decl {"," PARAM_DECL}
+ * param_decl_list_bdy -> param_decl | param_decl_list_bdy "," param_decl 
+ */
+param_decl_list_bdy     ::=	param_decl:pd 
+						{: List<ParamDecl> l = new LinkedList<ParamDecl>();
+                                         l.add(pd);
+                                         RESULT = l; :}
+						| param_decl_list_bdy:pdl COMMA param_decl:pd 
+						{: pdl.add(pd); RESULT = pdl; :}
+						;
+/*
+ * param_decl -> ["var"] TYPE NAME
+ * param_decl -> TYPE NAME | "var" TYPE NAME
+ */ 
+param_decl              ::= type:typename ID:name  
+						{:  RESULT = new ParamDecl(name, typename, false); :}
+						| 	VAR type:typename ID:name
+						{:  RESULT = new ParamDecl(name, typename, true); :}
                         ;
+						
+/*
+ * proc_decl -> "proc" [ "ret" TYPE ] NAME "(" [PARAM_DECL {"," PARAM_DECL}] ")" "{" {DECL} {STMT} "}"
+ * proc_decl -> "proc" NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
+			  | "proc" "ret" TYPE NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
+ */
+ proc_decl				::= PROC ID:name LPAR param_decl_list:pdl RPAR LBRACK decl_list_bdy:dl stmt_list:sl RBRACK
+						{: RESULT = new ProcDecl(name,pdl,dl,sl); :}
+						;
+
+/*
+ * stmt_list -> {STMT}
+ * stmt_list -> stmt | stmt_list stmt
+ */
+ stmt_list				::= stmt:s
+						{: List<Stmt> l = new LinkedList<Stmt>();
+							l.add(s);
+							RESULT = l; :}
+						| stmt_list:sl stmt:s
+						{:	sl.add(s);
+							RESULT = sl;
+						:}
+						;
+						
+/*
+ * stmt -> assign_stmt ";" | if_stmt | while_stmt | return_stmt ";" | call_stmt ";"
+ */
+ stmt					::= call_stmt:cs SEMI
+						{: RESULT = cs; :}
+						;
+						
+/*
+ * call_stmt -> NAME "(" [ ACTUAL_PARAM { "," ACTUAL_PARAM } ] ")"
+ * call_stmt -> NAME "(" actual_param_list ")"
+ */
+ call_stmt				::= ID:name LPAR /* actual_param_list:apl */ RPAR
+						{: RESULT = new CallStmt(name); :}
+						;
+							
+/*
+ * type -> "int" | "float" | "string" | "bool" | NAME
+ */ 
+type                    ::= INT {: RESULT = new Type("int"); :} 
+						| FLOAT {: RESULT = new Type("float"); :}
+						| STRING {: RESULT = new Type("string"); :}
+						| BOOL {: RESULT = new Type("bool"); :}
+						| ID:name {: RESULT = new Type(name); :}
+						;
+						
+/*
+ * log_op -> "&&" | "||"
+ */
+ /*
+ log_op					::= AND {: RESULT = new ... :}
+						| OR {: RESULT = new ... :}
+						;
+						*/
+
+/*
+ * rel_op -> "<" | "<=" | ">" | ">=" | "=" | "<>"
+ */
+ /*
+ rel_op 				::= LESS {: RESULT = new ... :}
+						| 	LEQ {: RESULT = new ... :}
+						| 	GTR {: RESULT = new ... :}
+						| 	GEQ {: RESULT = new ... :}
+						| 	EQ  {: RESULT = new ... :}
+						| 	NEQ {: RESULT = new ... :}
+						;
+						*/
+  
+/*
+ * arit_op -> "+" | "-" | "*" | "/" | "#"
+ */
+ /*
+ arit_op 				::= PLUS {: RESULT = new ... :}
+						| 	SUB {: RESULT = new ... :}
+						|	MULT {: RESULT = new ... :}
+						| 	DIV {: RESULT = new ... :}
+						|	EXP {: RESULT = new ... :}
+						;
+						*/

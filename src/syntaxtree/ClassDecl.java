@@ -1,14 +1,22 @@
 package syntaxtree;
+import java.util.List;
 
 public class ClassDecl extends Decl {
 
-    VarDecl vd;
-    public ClassDecl (String name, VarDecl vd) {
+    List<VarDecl> varDeclList;
+    public ClassDecl (String name, List<VarDecl> varDeclList) {
         super(name);
-        this.vd = vd;
+        this.varDeclList = varDeclList;
     }
 
     public String printAst() {
-        return "(CLASS_DECL (NAME " + name + ")\n\t"+vd.printAst()+"\n)";
+        StringBuilder sb = new StringBuilder();
+   
+        sb.append("(CLASS_DECL (NAME " + name + ")");
+        for (VarDecl vd: varDeclList) {
+            sb.append("\n    " + vd.printAst());
+        }
+        sb.append(")\n");
+        return sb.toString();
     }
 }
