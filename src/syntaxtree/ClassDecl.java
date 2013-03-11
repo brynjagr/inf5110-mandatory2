@@ -1,4 +1,5 @@
 package syntaxtree;
+
 import java.util.List;
 
 public class ClassDecl extends Decl {
@@ -11,11 +12,23 @@ public class ClassDecl extends Decl {
 
     public String printAst() {
         StringBuilder sb = new StringBuilder();
-   
-        sb.append("(CLASS_DECL (NAME " + name + ")");
-        for (VarDecl vd: varDeclList) {
-            sb.append("\n    " + vd.printAst());
+
+        sb.append(Indent.level);
+        sb.append("(CLASS_DECL (NAME ");
+        sb.append(name);
+        sb.append(")");
+
+        if (!varDeclList.isEmpty()) {
+            sb.append("\n");
+            Indent.inc();
+            for (VarDecl vd: varDeclList) {
+                sb.append(Indent.level);
+                sb.append(vd.printAst());
+            }
+            Indent.dec();
+            sb.append(Indent.level);
         }
+
         sb.append(")\n");
         return sb.toString();
     }

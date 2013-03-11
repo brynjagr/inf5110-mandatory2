@@ -7,6 +7,8 @@ public abstract class Stmt {
 	public Stmt(String name) {
 		this.name = name;
 	}
+
+    public Stmt() {}
 	
 	abstract String printAst();
 }

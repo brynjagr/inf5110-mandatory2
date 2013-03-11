@@ -8,9 +8,10 @@ public class CallStmt extends Stmt {
 	
 	public String printAst() {
 		StringBuilder sb = new StringBuilder();
+        sb.append(Indent.level);
 		sb.append("(CALL_STMT (NAME ");
 		sb.append(super.name);
-		sb.append(")\n");
+		sb.append(")");
 		
 		// for (ActualParam ap : actualParamList) { ... }
 		sb.append(")\n");

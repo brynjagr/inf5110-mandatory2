@@ -11,13 +11,22 @@
 	(PARAM_DECL (TYPE int) (NAME tehutehu))
 	(PARAM_DECL var (TYPE int) (NAME hei))
 	(VAR_DECL (TYPE int) (NAME i))
-	(CALL_STMT (NAME TestProc)
-)
+	(CALL_STMT (NAME TestProc))
 )
 	(CLASS_DECL (NAME TestClass2)
-    (VAR_DECL (TYPE int) (NAME i))
+	(VAR_DECL (TYPE int) (NAME i))
 )
-	(CALL_STMT (NAME TestProc2)
+	(CALL_STMT (NAME TestProc2))
+	(RETURN_STMT (LOG_OP &&
+		(CALL_STMT (NAME TestProc3))
+		(LOG_OP &&
+						(CALL_STMT (NAME TestProc2))
+				(LOG_OP ||
+										(CALL_STMT (NAME Test))
+																		(CALL_STMT (NAME Testa))
+)
+)
+)
 )
 )
 

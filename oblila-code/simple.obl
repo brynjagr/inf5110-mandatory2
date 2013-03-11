@@ -7,6 +7,7 @@ proc TestProc (var int toehuteoh, int tehutehu, var int hei) {
 	class TestClass2 {var int i;}
 	
 	TestProc2();
+        return TestProc3() && TestProc2() && Test() || Testa();
 
 }
 
