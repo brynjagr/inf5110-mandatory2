@@ -6,20 +6,20 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/AssignmentStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366972944212" ignored="false" />
     <file path="/Expression.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366797963542" ignored="false" />
-    <file path="/FunctionDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976166769" ignored="false" />
-    <file path="/SyntaxUnit.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366972821995" ignored="false" />
+    <file path="/FunctionDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366987886972" ignored="false" />
+    <file path="/SyntaxUnit.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366983274872" ignored="false" />
     <file path="/Program.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366795785140" ignored="false" />
-    <file path="/Compiler.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366972289045" ignored="false" />
-    <file path="/ProcedureDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976640340" ignored="false" />
-    <file path="/SymbolTable.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366972260418" ignored="false" />
-    <file path="/ElsePart.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366378373813" ignored="false" />
-    <file path="/CallStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366975834853" ignored="false" />
+    <file path="/Compiler.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366977483227" ignored="false" />
+    <file path="/ProcedureDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366995752937" ignored="false" />
+    <file path="/SymbolTable.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366977587963" ignored="false" />
+    <file path="/ElsePart.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366996922146" ignored="false" />
+    <file path="/CallStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366993017045" ignored="false" />
     <file path="/Error.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366720286570" ignored="false" />
     <file path="/FunctionNotDeclaredError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366378991329" ignored="false" />
     <file path="/MainNotFoundError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366378998146" ignored="false" />
     <file path="/Decl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976522384" ignored="false" />
     <file path="/ActualParam.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366725894914" ignored="false" />
-    <file path="/fragment.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976206009" ignored="false" />
+    <file path="/fragment.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366995640749" ignored="false" />
     <file path="/WrongNumberOfActualParametersError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366975065280" ignored="false" />
     <file path="/ReturnStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366384177534" ignored="false" />
     <file path="/MissingReturnStmtError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366383904154" ignored="false" />
@@ -31,7 +31,7 @@
     <file path="/FalseLiteral.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366720646710" ignored="false" />
     <file path="/FloatLiteral.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366723168792" ignored="false" />
     <file path="/EmptyExpression.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366797867150" ignored="false" />
-    <file path="/a.dummy" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976004217" ignored="false" />
+    <file path="/a.dummy" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366977949831" ignored="false" />
     <file path="/VarDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366969960810" ignored="false" />
     <file path="/VariableAlreadyDeclaredError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366388270894" ignored="false" />
     <file path="/NotExpression.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366797788779" ignored="false" />
@@ -43,7 +43,7 @@
     <file path="/CallExpression.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366974087668" ignored="false" />
     <file path="/NewExpression.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366797768601" ignored="false" />
     <file path="/TypeNotExistError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366710599947" ignored="false" />
-    <file path="/ClassDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366971785647" ignored="false" />
+    <file path="/ClassDecl.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366992057288" ignored="false" />
     <file path="/AlreadyDecalredError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366711483842" ignored="false" />
     <file path="/TypeAlreadyDecalredError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366711587075" ignored="false" />
     <file path="/ClassNotFoundError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366711944568" ignored="false" />
@@ -57,6 +57,11 @@
     <file path="/ProcedureUsedInExpressionError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366811451053" ignored="false" />
     <file path="/WhileStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366816105269" ignored="false" />
     <file path="/MainMustBeProcedureError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366976293929" ignored="false" />
+    <file path="/MainCantTakeParameters.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366986152141" ignored="false" />
+    <file path="/Tester.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366987264235" ignored="false" />
+    <file path="/FunctionMustReturnTypeError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366988160201" ignored="false" />
+    <file path="/ProcdureCantReturnValueError.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366995784498" ignored="false" />
+    <file path="/IfElseStmt.java" changelist="2ddd4124-4654-49d2-91cc-90da52a54e56" time="1366996886814" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,28 +120,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FalseLiteral.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/FalseLiteral.java">
+      <file leaf-file-name="WhileStmt.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/statement/WhileStmt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
+            <state line="66" column="14" selection-start="1669" selection-end="2072" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VarParamDecl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/VarParamDecl.java">
+      <file leaf-file-name="IfElseStmt.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/statement/IfElseStmt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
+            <state line="69" column="43" selection-start="2207" selection-end="2207" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VarDecl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/VarDecl.java">
+      <file leaf-file-name="ElsePart.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/statement/ElsePart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0">
+            <state line="32" column="9" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CallStmt.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/statement/CallStmt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="22" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.54039735">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AssignmentStmt.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/statement/AssignmentStmt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="13" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotExpression.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/expression/NotExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="13" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewExpression.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/expression/NewExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DotExpression.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntaxtree/expression/DotExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="20" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,61 +197,16 @@
       <file leaf-file-name="ProcedureDecl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ProcedureDecl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="9" selection-start="521" selection-end="535" vertical-scroll-proportion="0.0">
+            <state line="90" column="33" selection-start="2764" selection-end="2764" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LibraryFunction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/LibraryFunction.java">
+      <file leaf-file-name="ProcedureCantReturnValueError.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/error/ProcedureCantReturnValueError.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParamDecl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ParamDecl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="5" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FunctionDecl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/FunctionDecl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="5" selection-start="3666" selection-end="3666" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Decl.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/Decl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="22" selection-start="520" selection-end="520" vertical-scroll-proportion="0.43548387">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassDecl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ClassDecl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="5" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SyntaxUnit.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/syntaxtree/SyntaxUnit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="22" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
+            <state line="9" column="55" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -215,22 +222,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/error/MainMustBeProcedureError.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/Program.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/ActualParam.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/statement/WhileStmt.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/statement/ReturnStmt.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/expression/NotExpression.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/expression/DotExpression.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/expression/CallExpression.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/expression/operator/OperatorExpression.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/declaration/Decl.java" />
+        <option value="$PROJECT_DIR$/compiler/Compiler.java" />
         <option value="$PROJECT_DIR$/syntaxtree/declaration/ClassDecl.java" />
         <option value="$PROJECT_DIR$/syntaxtree/declaration/FunctionDecl.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/declaration/ParamDecl.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/declaration/VarDecl.java" />
+        <option value="$PROJECT_DIR$/error/ProcdureCantReturnValueError.java" />
         <option value="$PROJECT_DIR$/syntaxtree/declaration/ProcedureDecl.java" />
-        <option value="$PROJECT_DIR$/syntaxtree/LibraryFunction.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/expression/CallExpression.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/expression/NotExpression.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/expression/operator/OperatorExpression.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/ActualParam.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/statement/ReturnStmt.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/statement/WhileStmt.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/statement/CallStmt.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/expression/DotExpression.java" />
+        <option value="$PROJECT_DIR$/error/ProcedureCantReturnValueError.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/statement/IfElseStmt.java" />
+        <option value="$PROJECT_DIR$/syntaxtree/statement/ElsePart.java" />
       </list>
     </option>
   </component>
@@ -238,7 +245,7 @@
     <option name="x" value="-5" />
     <option name="y" value="25" />
     <option name="width" value="1930" />
-    <option name="height" value="1034" />
+    <option name="height" value="1154" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -285,6 +292,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -371,7 +379,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="operator" />
+              <option name="myItemId" value="variable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,32 +402,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="operator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="relation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="syntaxtree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="expression" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="literal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -465,28 +447,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="error" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="fileTemplates" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -508,19 +503,6 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -548,6 +530,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -638,26 +633,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="25" width="1930" height="1034" extended-state="7" />
-    <editor active="true" />
+    <frame x="-5" y="25" width="1930" height="1154" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34085777" sideWeight="0.45731056" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34085777" sideWeight="0.5389541" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18986084" sideWeight="0.5410886" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.4850587" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19263607" sideWeight="0.6591422" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19210246" sideWeight="0.8101392" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34085777" sideWeight="0.4551761" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -718,9 +713,23 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/operator/Operator.java">
+    <entry file="file://$PROJECT_DIR$/error/NotAVariableError.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
+        <state line="7" column="13" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error/NotAClassError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/operator/relation/RelOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -732,101 +741,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/TrueLiteral.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/ActualParam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+        <state line="28" column="23" selection-start="990" selection-end="990" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/StringLiteral.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/ReturnStmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+        <state line="39" column="17" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/IntLiteral.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/AssignmentStmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
+        <state line="15" column="13" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/FloatLiteral.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/NotExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+        <state line="12" column="13" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/literal/FalseLiteral.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/NewExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
+        <state line="12" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/SyntaxUnit.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/expression/DotExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
+        <state line="54" column="20" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ClassDecl.java">
+    <entry file="file://$PROJECT_DIR$/error/ProcedureCantReturnValueError.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="5" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0">
+        <state line="9" column="55" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/FunctionDecl.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/WhileStmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="5" selection-start="3666" selection-end="3666" vertical-scroll-proportion="0.0">
+        <state line="66" column="14" selection-start="1669" selection-end="2072" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ParamDecl.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/IfElseStmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="5" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
+        <state line="69" column="43" selection-start="2207" selection-end="2207" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/VarDecl.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/ElsePart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/VarParamDecl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
+        <state line="32" column="9" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ProcedureDecl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="9" selection-start="521" selection-end="535" vertical-scroll-proportion="0.0">
+        <state line="90" column="33" selection-start="2764" selection-end="2764" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/LibraryFunction.java">
+    <entry file="file://$PROJECT_DIR$/syntaxtree/statement/CallStmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/Decl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="22" selection-start="520" selection-end="520" vertical-scroll-proportion="0.43548387">
-          <folding />
+        <state line="55" column="22" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.54039735">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

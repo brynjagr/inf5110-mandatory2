@@ -80,7 +80,7 @@ public class Compiler {
             System.out.println("NO ERROR MESSAGES!\n");
         }
 
-        /*Must clear the static class types HashSet*/
+        /*Must clear the static class types */
         SymbolTable.clearClassTypes();
 
         if(retVal == 0){ // If it is all ok:
@@ -100,10 +100,10 @@ public class Compiler {
 
         List<ParamDecl> l = new LinkedList<ParamDecl>();
         l.add(new ParamDecl("int", null));
-        library.insertClassDecl("printint", new LibraryFunction("printint", l));
+        library.insertDecl("printint", new LibraryFunction("printint", l));
         l = new LinkedList<ParamDecl>();
         l.add(new ParamDecl("float", null));
-        library.insertClassDecl("printfloat", new LibraryFunction("printfloat", l));
+        library.insertDecl("printfloat", new LibraryFunction("printfloat", l));
 
         //Start here! Must add library fuctions in test4
         return library;

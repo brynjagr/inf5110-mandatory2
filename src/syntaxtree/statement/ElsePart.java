@@ -16,7 +16,8 @@ import java.util.List;
  */
 public class ElsePart extends SyntaxUnit {
 
-    List<Stmt> stmtList;
+    private List<Stmt> stmtList;
+    private SymbolTable localSymbolTable;
 
     public ElsePart(List<Stmt> stmtList) {
         this.stmtList = stmtList;
@@ -42,8 +43,16 @@ public class ElsePart extends SyntaxUnit {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) {
-        throw new UnsupportedOperationException();
+    public void checkCode(SymbolTable outerSymbolTable) {
+        this.localSymbolTable = new SymbolTable(outerSymbolTable);
+
+        for (Stmt stmt: stmtList) {
+            try {
+                stmt.checkCode(localSymbolTable);
+            } catch (error.Error e) {
+                super.error = true;
+            }
+        }
     }
 
     @Override

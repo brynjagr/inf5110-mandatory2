@@ -20,6 +20,7 @@ public class SymbolTable {
         basicTypes.add("float");
         basicTypes.add("bool");
         basicTypes.add("string");
+        basicTypes.add("null");
 
     }
 

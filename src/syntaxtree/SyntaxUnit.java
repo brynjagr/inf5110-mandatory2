@@ -17,11 +17,13 @@ public abstract class SyntaxUnit {
 
     public abstract String printAst();
 
-    public abstract void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError;
+    public abstract void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError;
 
     public abstract void generateCode(CodeFile codeFile);
 
     public void checkSameType(String t1, String t2) throws TypeNotSameError, TypeNotExistError {
+
+
 
         if (!SymbolTable.containsType(t1)) {
             throw new TypeNotExistError(t1);
@@ -31,8 +33,11 @@ public abstract class SyntaxUnit {
             throw new TypeNotExistError(t2);
         }
 
+        /*String can be null*/
         if (!t1.equals(t2)) {
-            throw new TypeNotSameError(t1, t2);
+            if (!(t1.equals("string") && t2.equals("null"))) {
+                throw new TypeNotSameError(t1, t2);
+            }
         }
     }
 

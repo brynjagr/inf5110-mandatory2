@@ -1,8 +1,7 @@
 package syntaxtree.statement;
 
-import error.*;
 import bytecode.CodeFile;
-import error.Error;
+import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.ActualParam;
 import syntaxtree.Indent;
@@ -47,26 +46,22 @@ public class CallStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, MissingReturnStmtError, VariableAlreadyDeclaredError, VariableNotDeclaredError, NotAVariableError, TypeNotSameError, MainMustBeProcedureError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
         Decl funcDecl = symbolTable.getDecl(this.name);
         if (funcDecl == null) {
             throw new FunctionNotDeclaredError(this.name);
         }
 
-        try {
-            checkParamenters(actualParamList, funcDecl.getParamDeclList(), symbolTable, funcDecl instanceof LibraryFunction);
-        } catch(WrongNumberOfActualParametersError e) {
-            super.error = true;
-        }
+
+        checkParamenters(funcDecl.getParamDeclList(), symbolTable, funcDecl instanceof LibraryFunction);
+
     }
 
-    private void checkParamenters(List<ActualParam> actualParamList, List<ParamDecl> paramDeclList, SymbolTable sym, boolean libraryFunction) throws WrongNumberOfActualParametersError {
+    private void checkParamenters(List<ParamDecl> paramDeclList, SymbolTable sym, boolean libraryFunction) throws WrongNumberOfActualParametersError, TypeNotExistError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, NotAVariableError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, MainMustBeProcedureError, MissingReturnStmtError, VariableNotDeclaredError, MainCantTakeParameters, FunctionMustReturnTypeError, ProcedureCantReturnValueError {
 
         for (int i = 0; i < paramDeclList.size(); ++i) {
-            ActualParam ap = actualParamList.get(i);
-
             try {
-
+                ActualParam ap = actualParamList.get(i);
                 ap.checkCode(sym);
                 String actualParamType = ap.getType();
                 String funcParamType = paramDeclList.get(i).getType();
@@ -77,8 +72,6 @@ public class CallStmt extends Stmt {
                     paramDeclList.get(i).setValue(ap);
                 }
 
-            } catch (Error e) {
-                super.error = true;
             } catch (IndexOutOfBoundsException x) {
                 throw new WrongNumberOfActualParametersError("few");
             }
@@ -108,9 +101,13 @@ public class CallStmt extends Stmt {
             throw new TypeNotExistError(t2);
         }
 
-        /*If the types don't match and t1 isn't a float*/
-        if (!t1.equals(t2) && (t1.equals("float") && t2.equals("int"))) {
-            throw new TypeNotSameError(t1, t2);
+        /*If the types don't match (float can be int and string can be null)*/
+        if (!t1.equals(t2)) {
+            if (!(t1.equals("int") && t2.equals("float"))) {
+                if ((!(t1.equals("null") && t2.equals("string")))) {
+                    throw new TypeNotSameError(t1, t2);
+                }
+            }
         }
     }
 

@@ -50,13 +50,15 @@ public class Tester {
 					testOk = false;
 					System.out.println("BAD: Test no " + number + " failed when it shouldn't!");
 					System.out.println("Error: " + compiler.error);
+                    System.exit(0);
 				}
 				break;
 			default:
 				if (shouldFail){
 					testOk = false;
 					System.out.println("BAD: Test no " + number + " didn't fail when it should!");
-				}
+                    System.exit(0);
+                }
 			}
 		} catch (Exception e) {
 			System.out.println("Test aborted because of error in Compiler: " + e);

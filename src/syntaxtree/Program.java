@@ -29,7 +29,7 @@ public class Program extends SyntaxUnit {
         return sb.toString();
     }
 
-    public void checkCode(SymbolTable outerSymbolTable) throws MainNotFoundError, MainMustBeProcedureError {
+    public void checkCode(SymbolTable outerSymbolTable) throws MainNotFoundError, MainMustBeProcedureError, MainCantTakeParameters {
 
        this.localSymbolTable = new SymbolTable(outerSymbolTable);
 

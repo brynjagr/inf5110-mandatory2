@@ -29,7 +29,7 @@ public class NotExpression extends Expression {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws TypeNotSameError, VariableNotDeclaredError, MissingReturnStmtError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError {
+    public void checkCode(SymbolTable symbolTable) throws TypeNotSameError, VariableNotDeclaredError, MissingReturnStmtError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
         e.checkCode(symbolTable);
         checkSameType(e.getType(), "bool");
         super.type = "bool";

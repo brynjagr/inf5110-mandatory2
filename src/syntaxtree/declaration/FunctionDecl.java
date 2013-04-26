@@ -71,7 +71,7 @@ public class FunctionDecl extends Decl {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError {
+    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
 
         localSymbolTable = new SymbolTable(outerSymbolTable);
 
@@ -110,6 +110,9 @@ public class FunctionDecl extends Decl {
             returnStmt = (ReturnStmt) s;
 
             try {
+                if (returnStmt.getType() == null) {
+                    throw new FunctionMustReturnTypeError(this.name);
+                }
                 checkSameType(type, returnStmt.getType());
             } catch (TypeNotSameError e) {
                 super.error = true;

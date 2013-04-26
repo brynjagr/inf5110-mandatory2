@@ -36,18 +36,13 @@ public class ReturnStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError {
+    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
         e.checkCode(symbolTable);
     }
 
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public String toString() {//fjern
-        return "ReturnStmt";
     }
 
     public String getType() throws VariableNotDeclaredError {

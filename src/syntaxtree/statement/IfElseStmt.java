@@ -1,6 +1,7 @@
 package syntaxtree.statement;
 
 import bytecode.CodeFile;
+import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 import syntaxtree.expression.Expression;
@@ -16,9 +17,10 @@ import java.util.List;
  */
 public class IfElseStmt extends Stmt {
 
-    Expression test;
-    List<Stmt> stmtList;
-    ElsePart   elsePart;
+    private Expression test;
+    private List<Stmt> stmtList;
+    private ElsePart   elsePart;
+    private SymbolTable localSymbolTable;
 
     public IfElseStmt(Expression test, List<Stmt> stmtList, ElsePart elsePart) {
         this.test = test;
@@ -49,8 +51,23 @@ public class IfElseStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) {
-        throw new UnsupportedOperationException();
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, MainCantTakeParameters, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError {
+        test.checkCode(outerSymbolTable);
+
+        /*TODO: fiks error-meldinger: 'must have bool'*/
+        checkSameType(test.getType(), "bool");
+
+        this.localSymbolTable = new SymbolTable(outerSymbolTable);
+
+        for (Stmt stmt: stmtList) {
+            try {
+                stmt.checkCode(localSymbolTable);
+            } catch (error.Error e) {
+                super.error = true;
+            }
+        }
+
+        elsePart.checkCode(outerSymbolTable);
     }
 
     @Override

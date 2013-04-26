@@ -1,5 +1,6 @@
 package syntaxtree.declaration;
 
+import error.MainCantTakeParameters;
 import error.MainMustBeProcedureError;
 import syntaxtree.SyntaxUnit;
 
@@ -19,7 +20,7 @@ public abstract class Decl extends SyntaxUnit {
        1. ChecKWhetherProc
        2. check num parameters == 0
         */
-    public void checkWhetherMain() throws MainMustBeProcedureError {
+    public void checkWhetherMain() throws MainMustBeProcedureError, MainCantTakeParameters {
         throw new MainMustBeProcedureError();
     }
 

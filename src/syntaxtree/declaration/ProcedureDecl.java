@@ -21,12 +21,14 @@ public class ProcedureDecl extends FunctionDecl {
     }
 
     @Override
-    public void checkWhetherMain () throws MainMustBeProcedureError {
+    public void checkWhetherMain () throws MainMustBeProcedureError, MainCantTakeParameters {
         if (!name.equals("Main")) {
             throw new MainMustBeProcedureError();
         }
 
-
+        if (paramDeclList.size() != 0) {
+            throw new MainCantTakeParameters();
+        }
     }
 
     @Override
@@ -35,7 +37,7 @@ public class ProcedureDecl extends FunctionDecl {
     }
 
     //@Override
-    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError {
+    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, FunctionMustReturnTypeError, ProcedureCantReturnValueError {
         localSymbolTable = new SymbolTable(outerSymbolTable);
 
         for (ParamDecl p : paramDeclList) {
@@ -58,29 +60,36 @@ public class ProcedureDecl extends FunctionDecl {
                     super.error = true;
                 }
             } catch(Error e) {
-              //  e.printStackTrace();
                 super.error = true;
             }
 
         }
 
         Iterator<Stmt> iterator = stmtList.iterator();
+        Stmt s = null;
         while (iterator.hasNext()) {
 
-            Stmt s = iterator.next();
+            s = iterator.next();
             try {
-            s.checkCode(localSymbolTable);
-            if (s.getError()) {
-                super.error = true;
-            }
+                s.checkCode(localSymbolTable);
+                if (s.getError()) {
+                    super.error = true;
+                }
 
-            if (s instanceof ReturnStmt && iterator.hasNext()) {
-                System.out.println("ERROR at l 74 ProcedureDecl");
-            }
+                if (s instanceof ReturnStmt && iterator.hasNext()) {
+                    System.out.println("ERROR at l 74 ProcedureDecl");
+                }
             } catch(Error e) {
-            //    e.printStackTrace();
                 super.error = true;
             }
+        }
+
+        if (s != null && s instanceof ReturnStmt) {
+            ReturnStmt returnStmt = (ReturnStmt) s;
+
+                if (returnStmt.getType() != null) {
+                    throw new ProcedureCantReturnValueError(this.name);
+                }
         }
 
         // Prevent recursive calls
