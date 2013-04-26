@@ -1,0 +1,22 @@
+(Program
+	CLASS_DECL (NAME Foo)
+		(VAR_DECL (TYPE int) (NAME Attr))
+	)
+	(PROC_DECL (TYPE null) (NAME Main)
+		(VAR_DECL (TYPE Foo) (NAME f))
+
+		(ASSIGN STMT
+			(NAME f)
+			(NEW (TYPE Foo))
+		)
+		(ASSIGN STMT
+FIX ME!!!			(INT_LITERAL 42)
+		)
+		(CALL_STMT (NAME printint)
+			(ACTUAL_PARAM FIX ME!!!)
+		)
+		(CALL_STMT (NAME printfloat)
+			(ACTUAL_PARAM FIX ME!!!)
+		)
+	)
+)

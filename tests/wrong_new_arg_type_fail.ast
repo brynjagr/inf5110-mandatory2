@@ -1,0 +1,9 @@
+(Program
+	(PROC_DECL (TYPE null) (NAME Main)
+		(PROC_DECL (TYPE null) (NAME f)
+			(RETURN_STMT)
+		)
+
+		(RETURN_STMT (NEW (TYPE f)))
+	)
+)

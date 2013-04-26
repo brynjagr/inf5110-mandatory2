@@ -1,0 +1,5 @@
+(Program
+	(PROC_DECL (TYPE null) (NAME Main)
+		PARAM_DECL (TYPE int) (NAME errorhere))
+	)
+)

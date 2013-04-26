@@ -1,229 +1,278 @@
 package oblig1parser;
 import java_cup.runtime.*;
 import syntaxtree.*;
+import syntaxtree.declaration.*;
+import syntaxtree.statement.*;
+import syntaxtree.expression.*;
+import syntaxtree.expression.variable.*;
+import syntaxtree.expression.literal.*;
+import syntaxtree.expression.operator.*;
+import syntaxtree.expression.operator.logic.*;
+import syntaxtree.expression.operator.arithmetic.*;
+import syntaxtree.expression.operator.relation.*;
 import java.util.*;
 
 parser code {:
 
 :};
 
-/* Terminals */
-terminal                        CLASS;
-terminal                        LBRACK, RBRACK;
-terminal                        LPAR, RPAR;
-terminal                        SEMI, RETURN;
-terminal                        PROCEDURE;
-
-/********************/
-terminal                        VAR;
-terminal                        INT, FLOAT, STRING, BOOL;
-terminal                        COMMA;
-terminal                        PROC;
-terminal                        AND, OR;
-terminal                        LESS, LEQ, GTR, GEQ, EQ, NEQ;
-terminal                        PLUS, SUB, MULT, DIV, EXP;
-/*******************/
+/////////////////////////////////////////////////////////////////////////
+//                              TERMINALS                             //
+///////////////////////////////////////////////////////////////////////
+/* Types */
 terminal String                 ID;
+terminal String                 FLOAT;
+terminal String                 INT;
+terminal String                 BOOL;
+terminal String                 STRING;
+
+/* Literals */
 terminal String                 STRING_LITERAL;
+terminal String                 INT_LITERAL;
+terminal String                 FLOAT_LITERAL;
+terminal String                 TRUE;
+terminal String                 FALSE;
+terminal String                 NULL;
 
-/* Non terminals */
+/* Relation operators */
+terminal                        LESS_THAN;
+terminal                        LESS_EQUAL;
+terminal                        GREATER_THAN;
+terminal                        GREATER_EQUAL;
+terminal                        EQUAL;
+terminal                        NOT_EQUAL;
+
+/* Aritmethic operators */
+terminal                        PLUS;
+terminal                        MINUS;
+terminal                        MULTIPLY;
+terminal                        DIVIDE;
+terminal                        EXPONENT;
+
+/* Logical operators */
+terminal                        OR;
+terminal                        AND;
+terminal                        NOT;
+
+/* Reserved words */
+terminal                        CLASS;
+terminal                        RETURN;
+terminal                        NEW;
+terminal                        PROC;
+terminal                        RET;
+terminal                        VAR;
+terminal                        IF;
+terminal                        THEN;
+terminal                        ELSE;
+terminal                        WHILE;
+terminal                        DO;
+
+/* Other terimnals */
+terminal                        LBRACK;
+terminal                        RBRACK;
+terminal                        LPAR;
+terminal                        RPAR;
+terminal                        SEMI;
+terminal                        COMMA;
+terminal                        ASSIGN;
+terminal                        DOT;
+
+/////////////////////////////////////////////////////////////////////////
+//                            NON TERMINALS                           //
+///////////////////////////////////////////////////////////////////////
 non terminal Program            program;
-non terminal List<Decl>         decl_list, decl_list_bdy;
-non terminal Decl               class_decl, decl;
 
-/*****************/
-non terminal VarDecl            var_decl;
-non terminal List<VarDecl>      var_decl_list, var_decl_list_bdy;
-non terminal List<ParamDecl>    param_decl_list, param_decl_list_bdy;    
+/* Lists */
+non terminal List<Decl>         opt_decl_list, decl_list;
+non terminal List<Decl>         opt_var_decl_list, var_decl_list;
+non terminal List<ParamDecl>    opt_param_decl_list, param_decl_list;
+non terminal List<Stmt>         opt_stmt_list, stmt_list;
+non terminal List<ActualParam>  opt_actual_param_list, actual_param_list;
+
+/* Declarations */
 non terminal ParamDecl          param_decl;
-non terminal ProcDecl           proc_decl;
-non terminal List<Stmt>         stmt_list;
-non terminal Stmt               stmt, return_stmt, call_stmt;
-non terminal Type               type;
-non terminal Expression         exp, single_exp;
-non terminal Operator           log_op;
-/*****************/
+non terminal Decl               decl;
+non terminal Decl               class_decl;
+non terminal Decl               proc_decl;
+non terminal Decl               var_decl;
 
+/* Statements  */
+non terminal Stmt               stmt;
+non terminal Stmt               assign_stmt;
+non terminal Stmt               if_stmt;
+non terminal Stmt               while_stmt;
+non terminal Stmt               return_stmt;
+non terminal Stmt               call_stmt;
 
-/* The grammar */
+/* Expressions */
+non terminal Expression         exp, literal, var;
+
+/* Other */
+non terminal ElsePart           else_part;
+non terminal String             type;
+non terminal ActualParam        actual_param;
+
+/* Precedence */
+precedence left OR;
+precedence left AND;
+precedence right NOT;
+precedence nonassoc LESS_THAN, LESS_EQUAL, GREATER_THAN, GREATER_EQUAL, EQUAL, NOT_EQUAL;
+precedence left PLUS, MINUS;
+precedence left MULTIPLY, DIVIDE;
+precedence right EXPONENT;
+precedence left DOT;
+
+/////////////////////////////////////////////////////////////////////////
+//                             THE GRAMMAR                            //
+///////////////////////////////////////////////////////////////////////
 program                 ::= decl_list:dl
-                        {: RESULT = new Program(dl); :} 
-                        ;
-                        
-decl_list                ::= /* EMPTY */
-                        {: RESULT = new LinkedList<Decl>(); :}
-                        | decl_list_bdy:dl
-                        {: RESULT = dl; :}
-                        ;
-                        
-decl_list_bdy           ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
+                            {: RESULT = new Program(dl); :};
+
+////////////////////
+//  Declarations //
+//////////////////
+opt_decl_list           ::=     {: RESULT = new LinkedList<Decl>(); :}
+                        |   decl_list:dl {: RESULT = dl; :};
+
+decl_list               ::= decl:d {: List<Decl> l = new LinkedList<Decl>();
                                       l.add(d);
-                                      RESULT = l; :} 
-                        |   decl_list_bdy:dl decl:d 
-                            {: dl.add(d); RESULT = dl; :}
-                        ;
+                                      RESULT = l; :}
+                        |   decl_list:l decl:d
+                                {: l.add(d); RESULT = l; :};
 
-decl                    ::= class_decl:sd 
-                        {: RESULT = sd; :}
-                        |   var_decl:vd 
-                        {: RESULT = vd; :}
-                        | proc_decl:pd 
-                        {: RESULT = pd; :}
-                        ;
-                                  
-class_decl              ::= CLASS ID:name LBRACK var_decl_list:vdl RBRACK
-                        {: RESULT = new ClassDecl(name,vdl); :}
-                        ;
+decl                    ::= class_decl:sd   {: RESULT = sd; :}
+                        |   proc_decl:pd    {: RESULT = pd; :}
+                        |   var_decl:vd     {: RESULT = vd; :};
 
-/* 
- * var_decl_list -> [var_decl_list_bdy] 
- * var_decl_list -> EMPTY | var_decl_list_bdy
- */
-var_decl_list            ::= /* EMPTY */
-                        {: RESULT = new LinkedList<VarDecl>(); :}
-                        |    var_decl_list_bdy:vdl {: RESULT = vdl; :}    
-                        ;
+class_decl              ::= CLASS ID:name LBRACK opt_var_decl_list:l RBRACK
+                                {: RESULT = new ClassDecl(name,l); :};
 
-/*
- * var_decl_list_bdy -> {var_decl}
- * var_decl_list_bdy -> var_decl | var_decl_list_bdy var_decl
- */
-var_decl_list_bdy       ::= var_decl:vd 
-                        {: List<VarDecl> l = new LinkedList<VarDecl>();
-                                         l.add(vd);
-                                         RESULT = l; :}
-                        | var_decl_list_bdy:vdl var_decl:vd {: vdl.add(vd); RESULT = vdl; :}
-                        ;
+opt_var_decl_list       ::= {: RESULT = new LinkedList<Decl>(); :}
+                        |   var_decl_list:vdl {: RESULT = vdl; :};
+
+var_decl_list           ::= var_decl:vd {: List<Decl> l = new LinkedList<Decl>();
+                                           l.add(vd);
+                                           RESULT = l; :}
+                        |   var_decl_list:vdl var_decl:vd
+                                {: vdl.add(vd); RESULT = vdl; :};
+
+var_decl                ::= VAR type:typename ID:name SEMI
+                                {: RESULT = new VarDecl(typename, name); :};
+
+proc_decl               ::= PROC RET type:t ID:name LPAR opt_param_decl_list:l1 RPAR LBRACK opt_decl_list:l2 opt_stmt_list:l3 RBRACK
+                                {: RESULT = new FunctionDecl(t, name, l1, l2, l3); :}
+                        |   PROC ID:name LPAR opt_param_decl_list:l1 RPAR LBRACK opt_decl_list:l2 opt_stmt_list:l3 RBRACK
+                                {: RESULT = new ProcedureDecl(name, l1, l2, l3); :};
+
+opt_param_decl_list     ::=     {: RESULT = new LinkedList<ParamDecl>(); :}
+                        |   param_decl_list:l {: RESULT = l; :};
+
+param_decl_list         ::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>();
+                                               l.add(pd);
+                                               RESULT = l; :}
+                        |   param_decl_list:l COMMA param_decl:d
+                                {: l.add(d); RESULT = l; :};
+
+param_decl              ::= type:t ID:name
+                                {: RESULT = new ParamDecl(t,name); :}
+                        |   VAR type:t ID:name
+                                {: RESULT = new VarParamDecl(t,name); :};
+
+////////////////////
+//  Statements   //
+//////////////////
+opt_stmt_list           ::=     {: RESULT = new LinkedList<Stmt>(); :}
+                        |   stmt_list:l {: RESULT = l; :};
+
+stmt_list               ::= stmt:s {: List<Stmt> l = new LinkedList<Stmt>();
+                                      l.add(s);
+                                      RESULT = l; :}
+                        |   stmt_list:sl stmt:s {: sl.add(s); RESULT = sl; :};
+
+stmt                    ::= assign_stmt:s SEMI  {: RESULT = s; :}
+                        |   if_stmt:s           {: RESULT = s; :}
+                        |   while_stmt:s        {: RESULT = s; :}
+                        |   return_stmt:s SEMI  {: RESULT = s; :}
+                        |   call_stmt:s SEMI    {: RESULT = s; :};
+
+assign_stmt             ::= exp:e1 ASSIGN exp:e2  {: RESULT = new AssignmentStmt(e1, e2); :};
+
+if_stmt                 ::= IF exp:e THEN LBRACK opt_stmt_list:l1 RBRACK else_part:l2
+                                {: RESULT = new IfElseStmt(e, l1, l2); :};
+
+else_part               ::=     {: RESULT = new ElsePart(new LinkedList<Stmt>()); :}
+                        |   ELSE LBRACK opt_stmt_list:l RBRACK
+                                {: RESULT = new ElsePart(l); :};
+
+while_stmt              ::= WHILE exp:e DO LBRACK opt_stmt_list:l RBRACK
+                                {: RESULT = new WhileStmt(e, l); :};
+
+return_stmt             ::= RETURN exp:e   {: RESULT = new ReturnStmt(e); :}
+                        |   RETURN         {: RESULT = new ReturnStmt(new EmptyExpression()); :};
+
+call_stmt               ::= ID:name LPAR opt_actual_param_list:l RPAR
+                                   {: RESULT = new CallStmt(l, name); :};
+
+/////////////////////
+//  Actual param  //
+///////////////////
+opt_actual_param_list   ::= {: RESULT = new LinkedList<ActualParam>(); :}
+                        |   actual_param_list:l {: RESULT = l; :};
+
+actual_param_list       ::= actual_param:ap {: List<ActualParam> l = new LinkedList<ActualParam>();
+                                               l.add(ap);
+                                               RESULT = l; :}
+                        |   actual_param_list:l COMMA actual_param:p
+                                {: l.add(p); RESULT = l; :};
+
+actual_param            ::= VAR var:v   {: RESULT = new ActualParam(v); :}
+                        |   exp:e       {: RESULT = new ActualParam(e); :};
+
+////////////////////
+//  Expressions  //
+//////////////////
+exp                     ::= exp:e1 OR exp:e2 {: RESULT = new OperatorExpression(new OrLogOp(), e1, e2); :}
+                        |   exp:e1 AND exp:e2 {: RESULT = new OperatorExpression(new AndLogOp(), e1, e2); :}
+                        |   exp:e1 PLUS exp:e2 {: RESULT = new OperatorExpression(new PlusAritOp(), e1, e2); :}
+                        |   exp:e1 MINUS exp:e2 {: RESULT = new OperatorExpression(new MinusAritOp(), e1, e2); :}
+                        |   exp:e1 LESS_THAN exp:e2 {: RESULT = new OperatorExpression(new LessThanRelOp(), e1, e2); :}
+                        |   exp:e1 LESS_EQUAL exp:e2 {: RESULT = new OperatorExpression(new LessEqualRelOp(), e1, e2); :}
+                        |   exp:e1 GREATER_THAN exp:e2 {: RESULT = new OperatorExpression(new GreaterThanRelOp(), e1, e2); :}
+                        |   exp:e1 GREATER_EQUAL exp:e2 {: RESULT = new OperatorExpression(new GreaterEqualRelOp(), e1, e2); :}
+                        |   exp:e1 EQUAL exp:e2 {: RESULT = new OperatorExpression(new EqualRelOp(), e1, e2); :}
+                        |   exp:e1 NOT_EQUAL exp:e2 {: RESULT = new OperatorExpression(new NotEqualRelOp(), e1, e2); :}
+                        |   exp:e1 EXPONENT:ex exp:e2 {: RESULT = new OperatorExpression(new ExponentAritOp(), e1, e2); :}
+                        |   exp:e1 MULTIPLY exp:e2 {: RESULT = new OperatorExpression(new MultiplyAritOp(), e1, e2); :}
+                        |   exp:e1 DIVIDE exp:e2 {: RESULT = new OperatorExpression(new DivideAritOp(), e1, e2); :}
+                        |   exp:e1 DOT exp:e2 {: RESULT = new DotExpression(e1, e2); :}
+                        |   literal:l {: RESULT = l; :}
+                        |   var:v {: RESULT = v; :}
+                        |   NOT exp:e {: RESULT = new NotExpression(e); :}
+                        |   NEW ID:name {: RESULT = new NewExpression(name); :}
+                        |   call_stmt:cs {: RESULT = new CallExpression(cs); :}
+                        |   LPAR exp:e RPAR {: RESULT = e; :};
+
+var                     ::= ID:name {: RESULT = new Variable(name); :};
                         
-var_decl                ::= VAR type:typename ID:name SEMI {:  RESULT = new VarDecl(name, typename); :}
-                        ;
-                        
-/* 
- * param_decl_list -> [param_decl_list_bdy] 
- * param_decl_list -> EMPTY | param_decl_list_bdy
- */
-param_decl_list            ::= /* EMPTY */
-                        {:     RESULT = new LinkedList<ParamDecl>(); :}
-                        |    param_decl_list_bdy:pdl 
-                        {:     RESULT = pdl; :}
-                        ;
 
-/*
- * param_decl_list_bdy -> param_decl {"," PARAM_DECL}
- * param_decl_list_bdy -> param_decl | param_decl_list_bdy "," param_decl 
- */
-param_decl_list_bdy     ::=    param_decl:pd 
-                        {: List<ParamDecl> l = new LinkedList<ParamDecl>();
-                                         l.add(pd);
-                                         RESULT = l; :}
-                        | param_decl_list_bdy:pdl COMMA param_decl:pd 
-                        {: pdl.add(pd); RESULT = pdl; :}
-                        ;
-/*
- * param_decl -> ["var"] TYPE NAME
- * param_decl -> TYPE NAME | "var" TYPE NAME
- */ 
-param_decl              ::= type:typename ID:name  
-                        {:  RESULT = new ParamDecl(name, typename, false); :}
-                        |     VAR type:typename ID:name
-                        {:  RESULT = new ParamDecl(name, typename, true); :}
-                        ;
-                        
-/*
- * proc_decl -> "proc" [ "ret" TYPE ] NAME "(" [PARAM_DECL {"," PARAM_DECL}] ")" "{" {DECL} {STMT} "}"
- * proc_decl -> "proc" NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
-              | "proc" "ret" TYPE NAME "(" param_decl_list ")" "{" decl_list stmt_list "}"
- */
- proc_decl                ::= PROC ID:name LPAR param_decl_list:pdl RPAR LBRACK decl_list_bdy:dl stmt_list:sl RBRACK
-                        {: RESULT = new ProcDecl(name,pdl,dl,sl); :}
-                        ;
+////////////////////
+//  Types        //
+//////////////////
+type                    ::= FLOAT   {: RESULT = "float"; :}
+                        |   INT     {: RESULT = "int"; :}
+                        |   STRING  {: RESULT = "string"; :}
+                        |   BOOL    {: RESULT = "bool"; :}
+                        |   ID:name {: RESULT = name; :};
 
-/*
- * stmt_list -> {STMT}
- * stmt_list -> stmt | stmt_list stmt
- */
- stmt_list                ::= stmt:s
-                        {: List<Stmt> l = new LinkedList<Stmt>();
-                            l.add(s);
-                            RESULT = l; :}
-                        | stmt_list:sl stmt:s
-                        {:    sl.add(s);
-                            RESULT = sl;
-                        :}
-                        ;
-                        
-/*
- * stmt -> assign_stmt ";" | if_stmt | while_stmt | return_stmt ";" | call_stmt ";"
- */
- stmt                    ::= call_stmt:cs SEMI
-                             {: RESULT = cs; :}
-                         |  return_stmt:rs SEMI
-                             {: RESULT = rs; :}
-                        ;
-
-return_stmt              ::= RETURN {: RESULT = new ReturnStmt(); :} 
-                        |   RETURN exp:e {: RESULT = new ReturnStmt(e); :}
-                        ;
-                        
-/*
- * call_stmt -> NAME "(" [ ACTUAL_PARAM { "," ACTUAL_PARAM } ] ")"
- * call_stmt -> NAME "(" actual_param_list ")"
- */
- call_stmt                ::= ID:name LPAR /* actual_param_list:apl */ RPAR
-                        {: RESULT = new CallStmt(name); :}
-                        ;
-
-exp                    ::=  single_exp:se {: RESULT = se; :}
-                        | single_exp:se log_op:op exp:e {: RESULT = new Expression(se, e, op); :}
-                        ;
-
-single_exp ::= call_stmt:cs {: RESULT = new FunctionCall((CallStmt) cs); :};
-
-/*op ::= log_op:lo {}
-    | rel_op:ro { ... }
-    | arit_op:ao { ... }
-*/
-/*
- * 
- * type -> "int" | "float" | "string" | "bool" | NAME
- */ 
-type                    ::= INT {: RESULT = new Type("int"); :} 
-                       | FLOAT {: RESULT = new Type("float"); :}
-                       | STRING {: RESULT = new Type("string"); :}
-                       | BOOL {: RESULT = new Type("bool"); :}
-                       | ID:name {: RESULT = new Type(name); :}
-                       ;
-/*
- * log_op -> "&&" | "||"
- */
-
- log_op                    ::= AND {: RESULT = new LogOp("&&"); :}
-                        | OR {: RESULT = new LogOp("||"); :}
-                        ;
+////////////////////
+//  Literals     //
+//////////////////
+literal                 ::= INT_LITERAL:s       {: RESULT = new IntLiteral(s); :}
+                        |   FLOAT_LITERAL:s     {: RESULT = new FloatLiteral(s); :}
+                        |   STRING_LITERAL:s    {: RESULT = new StringLiteral(s); :}
+                        |   TRUE                {: RESULT = new TrueLiteral("true"); :}
+                        |   FALSE               {: RESULT = new FalseLiteral("false"); :}
+                        |   NULL                {: RESULT = new NullLiteral("null"); :};
 
 
-/*
- * rel_op -> "<" | "<=" | ">" | ">=" | "=" | "<>"
- */
- /*
- rel_op                 ::= LESS {: RESULT = new ... :}
-                        |     LEQ {: RESULT = new ... :}
-                        |     GTR {: RESULT = new ... :}
-                        |     GEQ {: RESULT = new ... :}
-                        |     EQ  {: RESULT = new ... :}
-                        |     NEQ {: RESULT = new ... :}
-                        ;
-*/
-  
-/*
- * arit_op -> "+" | "-" | "*" | "/" | "#"
- */
- /*
- arit_op                 ::= PLUS {: RESULT = new ... :}
-                        |     SUB {: RESULT = new ... :}
-                        |    MULT {: RESULT = new ... :}
-                        |     DIV {: RESULT = new ... :}
-                        |    EXP {: RESULT = new ... :}
-                        ;
-*/
 

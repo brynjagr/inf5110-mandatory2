@@ -1,0 +1,12 @@
+proc Proc( int a )
+{
+    a := 42;
+}
+
+proc Main()
+{
+    var int tmp;
+    tmp := 32;
+    Proc( var tmp ); // error, procedure does not take a var parameter
+    printint( tmp );
+}

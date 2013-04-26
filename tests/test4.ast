@@ -1,0 +1,45 @@
+(Program
+	(PROC_DECL (TYPE float) (NAME Sum)
+		PARAM_DECL (TYPE float) (NAME v1))
+		PARAM_DECL (TYPE float) (NAME v2))
+
+		(RETURN_STMT (ARIT_OP +
+			(NAME v2)
+			(NAME v1)
+		))
+	)
+	(PROC_DECL (TYPE null) (NAME Main)
+		(PROC_DECL (TYPE int) (NAME InnerSum)
+			PARAM_DECL (TYPE int) (NAME v1))
+			PARAM_DECL (TYPE int) (NAME v2))
+
+			(RETURN_STMT (ARIT_OP +
+				(NAME v2)
+				(NAME v1)
+			))
+		)
+		(VAR_DECL (TYPE float) (NAME f))
+		(VAR_DECL (TYPE int) (NAME v))
+
+		(ASSIGN STMT
+			(NAME f)
+			(CALL_STMT (NAME Sum)
+				(ACTUAL_PARAM (FLOAT_LITERAL 41.5))
+				(ACTUAL_PARAM (FLOAT_LITERAL 0.5))
+			)
+		)
+		(ASSIGN STMT
+			(NAME v)
+			(CALL_STMT (NAME InnerSum)
+				(ACTUAL_PARAM (INT_LITERAL 40))
+				(ACTUAL_PARAM (INT_LITERAL 2))
+			)
+		)
+		(CALL_STMT (NAME printfloat)
+			(ACTUAL_PARAM (NAME f))
+		)
+		(CALL_STMT (NAME printint)
+			(ACTUAL_PARAM (NAME v))
+		)
+	)
+)

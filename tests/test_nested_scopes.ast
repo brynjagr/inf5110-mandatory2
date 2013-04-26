@@ -1,0 +1,17 @@
+(Program
+	(PROC_DECL (TYPE null) (NAME Main)
+		(VAR_DECL (TYPE bool) (NAME flag))
+		(PROC_DECL (TYPE null) (NAME change_flag)
+			(ASSIGN STMT
+				(NAME flag)
+				(NOT (NAME flag))
+			)
+		)
+
+		(ASSIGN STMT
+			(NAME flag)
+			(FALSE_LITERAL false)
+		)
+		(CALL_STMT (NAME change_flag))
+	)
+)

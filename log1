@@ -1,0 +1,86 @@
+Buildfile: build.xml
+
+init:
+
+mkdir:
+
+generate:
+      [cup] This is CUP v0.11a beta 20060608
+      [cup] Authors : Scott E. Hudson, Frank Flannery, Andrea Flexeder, Michael Petter and C. Scott Ananian
+      [cup] Bugreports to petter@cs.tum.edu
+      [cup] checking, whether this run is necessary
+      [cup] Parserfile and symbolfile are existing
+      [cup] Parserfile src-gen/oblig1parser/parser.java is actual
+      [cup] Symbolfilesrc-gen/oblig1parser/sym.java is actual
+      [cup] skipping generation of ./grammars/oblig1.cup
+      [cup] use option force="true" to override
+
+compile:
+    [javac] Compiling 1 source file to /ifi/asgard/m00/brynjagr/inf5110/INF5110-9110_oblig2/build/classes
+
+init:
+
+mkdir:
+
+compile-test:
+
+test:
+     [java] Testing compiler class.
+     [java] Testing files in /ifi/asgard/m00/brynjagr/inf5110/INF5110-9110_oblig2/tests
+     [java] Test[1] SHOULD FAIL: variable_scope_shadow_fail.obl
+     [java] syntaxtree.statement.AssignmentStmt@5ce4b8a7
+     [java] Log something: syntaxtree.statement.AssignmentStmt
+     [java] test222
+     [java] syntaxtree.statement.AssignmentStmt@1199bca3
+     [java] Log something: syntaxtree.statement.AssignmentStmt
+     [java] syntaxtree.statement.CallStmt@42f7a5c
+     [java] test222
+     [java] Test[2] SHOULD FAIL: procedure_unknown_returntype_fail.obl
+     [java] test222
+     [java] Test[3] SHOULD PASS: test3.obl
+     [java] fuck
+     [java] fuck
+     [java] fuck
+     [java] syntaxtree.statement.AssignmentStmt@ff3425
+     [java] Log something: syntaxtree.statement.AssignmentStmt
+     [java] Log something: syntaxtree.expression.NewExpression
+     [java] syntaxtree.statement.AssignmentStmt@72b869a5
+     [java] Log something: syntaxtree.statement.AssignmentStmt
+     [java] Log something: syntaxtree.expression.DotExpression
+     [java] syntaxtree.statement.CallStmt@29200a7a
+     [java] syntaxtree.statement.CallStmt@768fe4ad
+     [java] test222
+     [java] BAD: Test no 3 failed when it shouldn't!
+     [java] Error: null
+     [java] Test[4] SHOULD PASS: test4.obl
+     [java] Test aborted because of error in Compiler: java.lang.UnsupportedOperationException
+     [java] java.lang.UnsupportedOperationException
+     [java] 	at syntaxtree.expression.operator.OperatorExpression.checkCode(OperatorExpression.java:40)
+     [java] 	at syntaxtree.statement.ReturnStmt.checkCode(ReturnStmt.java:41)
+     [java] 	at syntaxtree.declaration.FunctionDecl.checkCode(FunctionDecl.java:97)
+     [java] 	at syntaxtree.Program.checkCode(Program.java:41)
+     [java] 	at compiler.Compiler.compile(Compiler.java:50)
+     [java] 	at test.Tester.testCompiler(Tester.java:41)
+     [java] 	at test.Tester.test(Tester.java:27)
+     [java] 	at test.Tester.main(Tester.java:75)
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:601)
+     [java] 	at org.apache.tools.ant.taskdefs.ExecuteJava.run(ExecuteJava.java:202)
+     [java] 	at org.apache.tools.ant.taskdefs.ExecuteJava.execute(ExecuteJava.java:134)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.run(Java.java:710)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.executeJava(Java.java:178)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.execute(Java.java:84)
+     [java] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:275)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:364)
+     [java] 	at org.apache.tools.ant.Target.execute(Target.java:341)
+     [java] 	at org.apache.tools.ant.Target.performTasks(Target.java:369)
+     [java] 	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1216)
+     [java] 	at org.apache.tools.ant.Project.executeTarget(Project.java:1185)
+     [java] 	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:40)
+     [java] 	at org.apache.tools.ant.Project.executeTargets(Project.java:1068)
+     [java] 	at org.apache.tools.ant.Main.runBuild(Main.java:668)
+     [java] 	at org.apache.tools.ant.Main.startAnt(Main.java:187)
+     [java] 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:246)
+     [java] 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:67)
