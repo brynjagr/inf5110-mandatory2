@@ -151,10 +151,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LibraryFunction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LibraryFunction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/syntaxtree/LibraryFunction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.7155963">
+            <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -178,10 +178,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Decl.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Decl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/Decl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="45" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
+            <state line="26" column="22" selection-start="520" selection-end="520" vertical-scroll-proportion="0.43548387">
               <folding />
             </state>
           </provider>
@@ -638,7 +638,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="25" width="1930" height="1034" extended-state="6" />
+    <frame x="-5" y="25" width="1930" height="1034" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -646,7 +646,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34085777" sideWeight="0.45731056" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34085777" sideWeight="0.5389541" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34085777" sideWeight="0.5389541" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.4850587" order="6" side_tool="false" content_ui="tabs" />
@@ -774,13 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/Decl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="45" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/ClassDecl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="77" column="5" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0">
@@ -825,7 +818,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/syntaxtree/LibraryFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.7155963">
+        <state line="34" column="5" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/syntaxtree/declaration/Decl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="22" selection-start="520" selection-end="520" vertical-scroll-proportion="0.43548387">
           <folding />
         </state>
       </provider>
