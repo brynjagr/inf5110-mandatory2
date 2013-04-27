@@ -51,10 +51,9 @@ public class IfElseStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, MainCantTakeParameters, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError {
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, MainCantTakeParameters, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError, NotAFunctionError {
         test.checkCode(outerSymbolTable);
 
-        /*TODO: fiks error-meldinger: 'must have bool'*/
         checkSameType(test.getType(), "bool");
 
         this.localSymbolTable = new SymbolTable(outerSymbolTable);

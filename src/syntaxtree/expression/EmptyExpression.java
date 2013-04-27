@@ -1,6 +1,7 @@
 package syntaxtree.expression;
 
 import bytecode.CodeFile;
+import error.NotAVariableError;
 import symboltable.SymbolTable;
 
 /**
@@ -16,8 +17,8 @@ public class EmptyExpression extends Expression {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override

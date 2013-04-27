@@ -1,7 +1,6 @@
 package syntaxtree.expression;
 
 import bytecode.CodeFile;
-import compiler.Compiler;
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.declaration.ClassDecl;
@@ -15,7 +14,7 @@ import syntaxtree.expression.variable.Variable;
 public class DotExpression extends Expression {
 
     private Expression e1, e2;
-    Variable righthandSide;
+    private Variable righthandSide;
 
 
     public DotExpression(Expression e1, Expression e2) {
@@ -26,7 +25,6 @@ public class DotExpression extends Expression {
     @Override
     public String printAst() {
         return "FIX ME!!!";
-       // throw new UnsupportedOperationException();
     }
 
     @Override
@@ -41,12 +39,8 @@ public class DotExpression extends Expression {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, MainNotFoundError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
-        Compiler.log(this);
-        /* 1. Check e1 is a class and is declared
-        *  2. Check if e2 is in e1.symbolTable  */
-
-        // Both e1 and e2 must be variables
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, MainNotFoundError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+       // Both e1 and e2 must be variables
         e1.checkWhetherVariable();
         e2.checkWhetherVariable();
 
@@ -67,7 +61,6 @@ public class DotExpression extends Expression {
 
         /*Must set type*/
         super.type = righthandSide.getType();
-
     }
 
     @Override

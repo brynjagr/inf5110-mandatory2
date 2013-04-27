@@ -1,6 +1,7 @@
 package syntaxtree.expression.literal;
 
 import bytecode.CodeFile;
+import error.NotAVariableError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 
@@ -15,8 +16,8 @@ public class FloatLiteral extends Literal {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override

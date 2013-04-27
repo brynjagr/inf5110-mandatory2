@@ -37,13 +37,21 @@ public class OperatorExpression extends Expression {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
         e1.checkCode(symbolTable);
         e2.checkCode(symbolTable);
 
         checkSameType(e1.getType(), e2.getType());
 
-        /*Find the type of the expression*/
+        setType(e1, e2);
+    }
+
+    /**
+     * Sets the type of the Expression
+     * @param e1
+     * @param e2
+     */
+    private void setType(Expression e1, Expression e2) throws VariableNotDeclaredError {
         if (op.getOperandType().equals("bool")) {
             super.type = "bool";
         } else if (e1.getType() == "int" && e2.getType() == "float") {
@@ -59,7 +67,7 @@ public class OperatorExpression extends Expression {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 }

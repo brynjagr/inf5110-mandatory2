@@ -17,7 +17,7 @@ public class IntLiteral extends Literal {
 
     @Override
     public void checkWhetherVariable() throws NotAVariableError {
-        throw new NotAVariableError("IntLiteral with value " + val);
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override

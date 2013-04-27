@@ -43,21 +43,7 @@ public class ClassDecl extends Decl {
 
         this.localSymbolTable = new SymbolTable(symbolTable);
 
-        /*Checks if class is already declared, or name is already used*/
-        try {
-            if (localSymbolTable.getDecl(name) != null) {
-                throw new AlreadyDecalredError(name);
-            }
-
-            if (SymbolTable.containsType(name)) {
-                throw new TypeAlreadyDecalredError(name);
-            }
-        } catch (AlreadyDecalredError alreadyDecalredError) {
-            super.error = true;
-        } catch (TypeAlreadyDecalredError typeAlreadyDecalredError) {
-            typeError = true;
-            super.error = true;
-        }
+        checkWhetherDeclared();
 
         for (Decl d : varDeclList) {
             try {
@@ -72,23 +58,25 @@ public class ClassDecl extends Decl {
         }
     }
 
+    private void checkWhetherDeclared() {
+        try {
+            if (localSymbolTable.getDecl(name) != null) {
+                throw new AlreadyDecalredError(name);
+            }
+
+            if (SymbolTable.containsType(name)) {
+                throw new TypeAlreadyDecalredError(name);
+            }
+        } catch (AlreadyDecalredError alreadyDecalredError) {
+            super.error = true;
+        } catch (TypeAlreadyDecalredError typeAlreadyDecalredError) {
+            typeError = true;
+            super.error = true;
+        }
+    }
+
     @Override
     public void generateCode(CodeFile codeFile) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int checkWhetherProc() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int checkWhetherFunction() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<ParamDecl> getParamDeclList() {
         throw new UnsupportedOperationException();
     }
 

@@ -25,21 +25,16 @@ public class CallExpression extends Expression {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
 
         callStatement.checkCode(symbolTable);
 
         FunctionDecl func = (FunctionDecl) symbolTable.getDecl(callStatement.getName());
-
-        //Should not happen since this has been checked in callStatement.checkCode
-        if (func == null) {
-            throw new FunctionNotDeclaredError(callStatement.getName());
-        }
 
         String funcType = func.getType();
 
@@ -49,7 +44,7 @@ public class CallExpression extends Expression {
             throw new ProcedureUsedInExpressionError(callStatement.getName());
         }
 
-        super.type = func.getType();
+        super.type = funcType;
     }
 
     @Override

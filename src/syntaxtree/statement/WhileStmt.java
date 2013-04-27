@@ -14,7 +14,6 @@ import java.util.List;
  * User: Havard
  * Date: 10.03.13
  * Time: 16:07
- * To change this template use File | Settings | File Templates.
  */
 public class WhileStmt extends Stmt {
 
@@ -50,10 +49,9 @@ public class WhileStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, VariableAlreadyDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, MissingReturnStmtError, VariableNotDeclaredError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, VariableAlreadyDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, MissingReturnStmtError, VariableNotDeclaredError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
         test.checkCode(outerSymbolTable);
 
-        /*TODO: fiks error-meldinger: 'must have bool'*/
         checkSameType(test.getType(), "bool");
 
         this.localSymbolTable = new SymbolTable(outerSymbolTable);

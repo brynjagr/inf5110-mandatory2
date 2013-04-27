@@ -33,19 +33,4 @@ public class LibraryFunction extends ProcedureDecl {
     public void generateCode(CodeFile codeFile) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    @Override
-    public int checkWhetherProc() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public int checkWhetherFunction() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public List<ParamDecl> getParamDeclList() {
-        return super.paramDeclList;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

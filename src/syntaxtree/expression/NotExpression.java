@@ -24,12 +24,12 @@ public class NotExpression extends Expression {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws TypeNotSameError, VariableNotDeclaredError, MissingReturnStmtError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
+    public void checkCode(SymbolTable symbolTable) throws TypeNotSameError, VariableNotDeclaredError, MissingReturnStmtError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
         e.checkCode(symbolTable);
         checkSameType(e.getType(), "bool");
         super.type = "bool";

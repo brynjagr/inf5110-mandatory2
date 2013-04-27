@@ -2,6 +2,7 @@ package syntaxtree.expression;
 
 import bytecode.CodeFile;
 import error.ClassNotFoundError;
+import error.NotAVariableError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 
@@ -24,13 +25,12 @@ public class NewExpression extends Expression {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override
     public void checkCode(SymbolTable symbolTable) throws ClassNotFoundError {
-        compiler.Compiler.log(this);
         if (!SymbolTable.containsType(name)) {
             super.error = true;
             throw new ClassNotFoundError(name);

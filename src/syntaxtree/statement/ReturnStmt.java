@@ -14,7 +14,7 @@ import syntaxtree.expression.Expression;
  */
 public class ReturnStmt extends Stmt {
 
-    Expression e;
+    private Expression e;
 
     public ReturnStmt(Expression e) {
         this.e = e;
@@ -36,7 +36,7 @@ public class ReturnStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError {
+    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
         e.checkCode(symbolTable);
     }
 

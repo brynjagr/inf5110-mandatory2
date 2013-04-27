@@ -1,6 +1,7 @@
 package syntaxtree.expression.literal;
 
 import bytecode.CodeFile;
+import error.NotAVariableError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 
@@ -21,8 +22,8 @@ public class FalseLiteral extends Literal {
     }
 
     @Override
-    public void checkWhetherVariable() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherVariable() throws NotAVariableError {
+        throw new NotAVariableError(this.getClass().getName());
     }
 
     @Override

@@ -2,6 +2,8 @@ package syntaxtree.declaration;
 
 import error.MainCantTakeParameters;
 import error.MainMustBeProcedureError;
+import error.NotAFunctionError;
+import error.NotAProcedureError;
 import syntaxtree.SyntaxUnit;
 
 import java.util.List;
@@ -21,17 +23,17 @@ public abstract class Decl extends SyntaxUnit {
         throw new MainMustBeProcedureError();
     }
 
-    /*
-        1. Check if type == ""
-     */
-    public abstract int checkWhetherProc();
+    public void checkWhetherProc() throws NotAProcedureError{
+        throw new NotAProcedureError(name);
+    }
 
-    /*
-        1. Check if type != ""
-     */
-    public abstract int checkWhetherFunction();
+    public void checkWhetherFunction() throws NotAFunctionError {
+        throw new NotAFunctionError(name);
+    }
 
-    public abstract List<ParamDecl> getParamDeclList();
+    public List<ParamDecl> getParamDeclList() throws NotAFunctionError {
+        throw new NotAFunctionError(name);
+    }
 
     /**
      * Gets the type of the declaration

@@ -7,8 +7,6 @@ import symboltable.SymbolTable;
 import syntaxtree.ActualParam;
 import syntaxtree.Indent;
 
-import java.util.List;
-
 /**
  * User: Havard
  * Date: 10.03.13
@@ -39,21 +37,6 @@ public class ParamDecl extends Decl {
 
     @Override
     public void generateCode(CodeFile codeFile) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int checkWhetherProc() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int checkWhetherFunction() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<ParamDecl> getParamDeclList() {
         throw new UnsupportedOperationException();
     }
 

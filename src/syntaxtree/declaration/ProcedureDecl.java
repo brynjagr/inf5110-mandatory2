@@ -32,8 +32,12 @@ public class ProcedureDecl extends FunctionDecl {
     }
 
     @Override
-    public int checkWhetherProc() {
-        throw new UnsupportedOperationException();
+    public void checkWhetherProc() {
+        // OK!
+    }
+
+    public void checkWhetherFunction() throws NotAFunctionError {
+        throw new NotAFunctionError(name);
     }
 
     //@Override
