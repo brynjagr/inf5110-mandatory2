@@ -15,8 +15,8 @@ import syntaxtree.expression.variable.Variable;
  */
 public class AssignmentStmt extends Stmt {
 
-    Expression e1;
-    Expression e2;
+    private Expression e1;
+    private Expression e2;
 
     public AssignmentStmt(Expression e1, Expression e2) {
         this.e1 = e1;

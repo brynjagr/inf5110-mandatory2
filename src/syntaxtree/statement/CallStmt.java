@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class CallStmt extends Stmt {
 
-    String name;
-    List<ActualParam> actualParamList;
+    private String name;
+    private List<ActualParam> actualParamList;
 
     public CallStmt(List<ActualParam> actualParamList, String name) {
         this.actualParamList = actualParamList;
@@ -52,9 +52,7 @@ public class CallStmt extends Stmt {
             throw new FunctionNotDeclaredError(this.name);
         }
 
-
         checkParamenters(funcDecl.getParamDeclList(), symbolTable, funcDecl instanceof LibraryFunction);
-
     }
 
     private void checkParamenters(List<ParamDecl> paramDeclList, SymbolTable sym, boolean libraryFunction) throws WrongNumberOfActualParametersError, TypeNotExistError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, NotAVariableError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, MainMustBeProcedureError, MissingReturnStmtError, VariableNotDeclaredError, MainCantTakeParameters, FunctionMustReturnTypeError, ProcedureCantReturnValueError {
@@ -65,8 +63,7 @@ public class CallStmt extends Stmt {
                 ap.checkCode(sym);
                 String actualParamType = ap.getType();
                 String funcParamType = paramDeclList.get(i).getType();
-
-                checkSameType(actualParamType, funcParamType);
+                checkSameType(funcParamType, actualParamType);
 
                 if (!libraryFunction) {
                     paramDeclList.get(i).setValue(ap);
@@ -79,35 +76,6 @@ public class CallStmt extends Stmt {
 
         if (actualParamList.size() != paramDeclList.size()) {
             throw new WrongNumberOfActualParametersError("many");
-        }
-    }
-
-    /**
-     * Does the same as the overridden method in SyntaxUnit except that it won't cast a TypeNotSameError
-     * if t1 is a float and t2 is a integer.
-     * @param t1
-     * @param t2
-     * @throws TypeNotSameError
-     * @throws TypeNotExistError
-     */
-    @Override
-    public void checkSameType(String t1, String t2) throws TypeNotSameError, TypeNotExistError {
-
-        if (!SymbolTable.containsType(t1)) {
-            throw new TypeNotExistError(t1);
-        }
-
-        if (!SymbolTable.containsType(t2)) {
-            throw new TypeNotExistError(t2);
-        }
-
-        /*If the types don't match (float can be int and string can be null)*/
-        if (!t1.equals(t2)) {
-            if (!(t1.equals("int") && t2.equals("float"))) {
-                if ((!(t1.equals("null") && t2.equals("string")))) {
-                    throw new TypeNotSameError(t1, t2);
-                }
-            }
         }
     }
 

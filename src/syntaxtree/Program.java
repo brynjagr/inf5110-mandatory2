@@ -31,10 +31,7 @@ public class Program extends SyntaxUnit {
 
     public void checkCode(SymbolTable outerSymbolTable) throws MainNotFoundError, MainMustBeProcedureError, MainCantTakeParameters {
 
-       this.localSymbolTable = new SymbolTable(outerSymbolTable);
-
-
-
+        this.localSymbolTable = new SymbolTable(outerSymbolTable);
         for (Decl d: decls) {
 
             try {
@@ -44,9 +41,6 @@ public class Program extends SyntaxUnit {
                 }
 
             } catch (Error e) {
-                System.out.println("Program 45: Our own error!");
-                //e.printStackTrace();
-
                 super.error = true;
             }
         }

@@ -56,7 +56,7 @@ public class DotExpression extends Expression {
 
         Variable classPointer = e1.getVariable();
 
-            /*The variable must be a classPointer*/
+        /*The variable must be a classPointer*/
         if (!SymbolTable.containsClassType(classPointer.getType())) {
             throw new NotAClassError("NotAClassError: Expected class on lefthandside of '.', found: " + classPointer.getName());
         }
@@ -65,6 +65,7 @@ public class DotExpression extends Expression {
 
         e2.checkCode(classDecl.getSymboltable());
 
+        /*Must set type*/
         super.type = righthandSide.getType();
 
     }

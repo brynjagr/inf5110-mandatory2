@@ -2,6 +2,7 @@ package syntaxtree.declaration;
 
 import bytecode.CodeFile;
 import error.VariableAlreadyDeclaredError;
+import error.VariableNotDeclaredError;
 import symboltable.SymbolTable;
 import syntaxtree.ActualParam;
 import syntaxtree.Indent;
@@ -29,11 +30,10 @@ public class ParamDecl extends Decl {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws VariableAlreadyDeclaredError {
+    public void checkCode(SymbolTable symbolTable) throws VariableAlreadyDeclaredError, VariableNotDeclaredError {
         if (symbolTable.getLocalDecl(this.name) != null) {
             throw new VariableAlreadyDeclaredError(this.name);
         }
-
         symbolTable.insertDecl(this.name, this);
     }
 

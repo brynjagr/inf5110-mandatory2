@@ -11,6 +11,7 @@ public class LogOp extends Operator {
 
     public LogOp(String val) {
         super(val);
+        super.type = "bool";
     }
 
     @Override

@@ -8,12 +8,18 @@ package syntaxtree.expression.operator;
 public class Operator {
 
     protected String val;
+    protected String type;
 
     public Operator(String val) {
         this.val = val;
+        this.type = "";
     }
 
     public String printAst() {
         return val + "\n";
+    }
+
+    public String getOperandType() {
+        return this.type;
     }
 }

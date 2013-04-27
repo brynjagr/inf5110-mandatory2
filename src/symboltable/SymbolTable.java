@@ -26,8 +26,6 @@ public class SymbolTable {
 
     SymbolTable outerScopeSymbolTable;
     HashMap<String, Decl> localDecls;
-    static int error;
-    static StringBuilder errorMsg;
 
     public SymbolTable(SymbolTable outerScopeSymbolTable) {
         this.outerScopeSymbolTable = outerScopeSymbolTable;

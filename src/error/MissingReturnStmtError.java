@@ -7,6 +7,6 @@ package error;
  */
 public class MissingReturnStmtError extends Error {
     public MissingReturnStmtError(String name) {
-        super("Missing return statement in function: " + name);
+        super("MissingReturnStmtError: Missing return statement in function " + name);
     }
 }

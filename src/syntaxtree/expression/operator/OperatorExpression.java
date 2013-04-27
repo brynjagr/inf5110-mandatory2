@@ -41,9 +41,16 @@ public class OperatorExpression extends Expression {
         e1.checkCode(symbolTable);
         e2.checkCode(symbolTable);
 
-        /*Stemmer dette?*/
         checkSameType(e1.getType(), e2.getType());
-        type = e1.getType();
+
+        /*Find the type of the expression*/
+        if (op.getOperandType().equals("bool")) {
+            super.type = "bool";
+        } else if (e1.getType() == "int" && e2.getType() == "float") {
+            super.type = "float";
+        } else {
+            super.type = e1.getType();
+        }
     }
 
     @Override

@@ -33,10 +33,12 @@ public abstract class SyntaxUnit {
             throw new TypeNotExistError(t2);
         }
 
-        /*String can be null*/
+        /*int can be float and string can be null*/
         if (!t1.equals(t2)) {
-            if (!(t1.equals("string") && t2.equals("null"))) {
-                throw new TypeNotSameError(t1, t2);
+            if (!(t1.equals("float") && t2.equals("int"))) {
+                if (!(t1.equals("string") && t2.equals("null"))) {
+                    throw new TypeNotSameError(t1, t2);
+                }
             }
         }
     }

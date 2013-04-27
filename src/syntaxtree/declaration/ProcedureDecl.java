@@ -77,7 +77,6 @@ public class ProcedureDecl extends FunctionDecl {
                 }
 
                 if (s instanceof ReturnStmt && iterator.hasNext()) {
-                    System.out.println("ERROR at l 74 ProcedureDecl");
                 }
             } catch(Error e) {
                 super.error = true;

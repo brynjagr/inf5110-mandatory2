@@ -95,8 +95,4 @@ public class ClassDecl extends Decl {
     public SymbolTable getSymboltable() {
         return localSymbolTable;
     }
-
-    public Decl containsDecl(String name) {
-        return localSymbolTable.getLocalDecl(name);
-    }
 }

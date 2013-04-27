@@ -11,6 +11,7 @@ public class RelOp extends Operator {
 
     public RelOp(String val) {
         super(val);
+        super.type = "bool";
     }
 
     @Override
