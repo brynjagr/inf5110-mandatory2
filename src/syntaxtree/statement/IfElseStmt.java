@@ -51,7 +51,7 @@ public class IfElseStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, MainCantTakeParameters, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError, NotAFunctionError {
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         test.checkCode(outerSymbolTable);
 
         checkSameType(test.getType(), "bool");

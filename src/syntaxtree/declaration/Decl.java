@@ -1,9 +1,6 @@
 package syntaxtree.declaration;
 
-import error.MainCantTakeParameters;
-import error.MainMustBeProcedureError;
-import error.NotAFunctionError;
-import error.NotAProcedureError;
+import error.*;
 import syntaxtree.SyntaxUnit;
 
 import java.util.List;
@@ -19,7 +16,7 @@ public abstract class Decl extends SyntaxUnit {
     protected String name;
 
     /* Procedure overrides this one*/
-    public void checkWhetherMain() throws MainMustBeProcedureError, MainCantTakeParameters {
+    public void checkWhetherMain() throws MainMustBeProcedureError, MainCantTakeParametersError {
         throw new MainMustBeProcedureError();
     }
 
@@ -39,7 +36,12 @@ public abstract class Decl extends SyntaxUnit {
      * Gets the type of the declaration
      * @return the type
      */
+    public void checkWhetherCallable() throws NotCallableError {
+        throw new NotCallableError(name);
+    }
     public String getType() {
         return type;
     }
+
+
 }

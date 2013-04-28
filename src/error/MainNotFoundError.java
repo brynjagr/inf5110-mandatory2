@@ -9,7 +9,7 @@ package error;
 public class MainNotFoundError extends Error {
 
     public MainNotFoundError() {
-        super("Undefined reference to Main");
+        super("MainNotFoundError: Undefined reference to Main");
     }
 }
 

@@ -21,13 +21,13 @@ public class ProcedureDecl extends FunctionDecl {
     }
 
     @Override
-    public void checkWhetherMain () throws MainMustBeProcedureError, MainCantTakeParameters {
+    public void checkWhetherMain () throws MainMustBeProcedureError, MainCantTakeParametersError {
         if (!name.equals("Main")) {
             throw new MainMustBeProcedureError();
         }
 
         if (paramDeclList.size() != 0) {
-            throw new MainCantTakeParameters();
+            throw new MainCantTakeParametersError();
         }
     }
 

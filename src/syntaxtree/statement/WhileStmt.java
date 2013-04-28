@@ -49,7 +49,7 @@ public class WhileStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, VariableAlreadyDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, MissingReturnStmtError, VariableNotDeclaredError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, VariableAlreadyDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, MissingReturnStmtError, VariableNotDeclaredError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         test.checkCode(outerSymbolTable);
 
         checkSameType(test.getType(), "bool");

@@ -46,38 +46,19 @@ public class CallStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, MissingReturnStmtError, VariableAlreadyDeclaredError, VariableNotDeclaredError, NotAVariableError, TypeNotSameError, MainMustBeProcedureError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, MissingReturnStmtError, VariableAlreadyDeclaredError, VariableNotDeclaredError, NotAVariableError, TypeNotSameError, MainMustBeProcedureError, ProcedureUsedInExpressionError, ClassNotFoundError, TypeNotExistError, MainNotFoundError, NotAClassError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         Decl funcDecl = symbolTable.getDecl(this.name);
 
         if (funcDecl == null) {
             throw new FunctionNotDeclaredError(this.name);
         }
 
-        checkWetherCallable(funcDecl);
+        funcDecl.checkWhetherCallable();
 
         checkParamenters(funcDecl.getParamDeclList(), symbolTable, funcDecl instanceof LibraryFunction);
     }
 
-    private void checkWetherCallable(Decl funcDecl) throws NotAFunctionError {
-        boolean callable = false;
-        try {
-            funcDecl.checkWhetherProc();
-            callable = true;
-        } catch (NotAProcedureError e) {
-
-        }
-
-        if (!callable) {
-            try {
-                funcDecl.checkWhetherFunction();
-            }
-            catch (NotAFunctionError e) {
-                throw new NotAFunctionError(this.name);
-            }
-        }
-    }
-
-    private void checkParamenters(List<ParamDecl> paramDeclList, SymbolTable sym, boolean libraryFunction) throws WrongNumberOfActualParametersError, TypeNotExistError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, NotAVariableError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, MainMustBeProcedureError, MissingReturnStmtError, VariableNotDeclaredError, MainCantTakeParameters, FunctionMustReturnTypeError, ProcedureCantReturnValueError, NotAFunctionError {
+    private void checkParamenters(List<ParamDecl> paramDeclList, SymbolTable sym, boolean libraryFunction) throws WrongNumberOfActualParametersError, TypeNotExistError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, NotAVariableError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, ClassNotFoundError, MainMustBeProcedureError, MissingReturnStmtError, VariableNotDeclaredError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
 
         for (int i = 0; i < paramDeclList.size(); ++i) {
             try {

@@ -71,7 +71,7 @@ public class FunctionDecl extends Decl {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
 
         localSymbolTable = new SymbolTable(outerSymbolTable);
 
@@ -144,6 +144,11 @@ public class FunctionDecl extends Decl {
     @Override
     public List<ParamDecl> getParamDeclList() {
         return paramDeclList;
+    }
+
+    @Override
+    public void checkWhetherCallable() {
+        // OK!
     }
 
     public ReturnStmt getReturnStmt() {

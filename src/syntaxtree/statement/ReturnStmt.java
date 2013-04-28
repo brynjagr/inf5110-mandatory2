@@ -36,7 +36,7 @@ public class ReturnStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, MissingReturnStmtError, VariableAlreadyDeclaredError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         e.checkCode(symbolTable);
     }
 
