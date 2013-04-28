@@ -32,9 +32,25 @@ public class VarDecl extends Decl {
 
         symbolTable.insertDecl(name, this);
     }
-
+    
+    /* 
+     * Global Variable
+     */
     @Override
     public void generateCode(CodeFile codeFile) {
+
+	CodeType type;
+
+	type = SyntaxUnit.getCodeType(getType(), codeFile);
+
+	codeFile.addVariable(getName());
+	codeFile.updateVariable(getName(), type);
+    }
+
+    /* 
+     * Local Variable
+     */
+    public void generateCode(CodeProcedure proc) {
         throw new UnsupportedOperationException();
     }
 }

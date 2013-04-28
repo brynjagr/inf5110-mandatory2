@@ -31,6 +31,14 @@ public class LibraryFunction extends ProcedureDecl {
 
     @Override
     public void generateCode(CodeFile codeFile) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        
+	codeFile.addProcedure(getName());
+	CodeType type = SyntaxUnit.getCodeType(getType(), codeFile);
+	CodeProcedure proc = new CodeProcedure(getName(), type, codeFile);
+	for (ParamDecl pd : l) {
+	    CodeType paramType = SyntaxUnit.getCodeType(getType(), codeFile);
+	    proc.addParameter(pd.getName(), paramType);
+	}
+	codeFile.updateProcedure(proc);
     }
 }

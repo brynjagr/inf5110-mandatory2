@@ -45,9 +45,8 @@ public class Variable extends Expression {
 
     }
 
-    @Override
-    public void generateCode(CodeFile codeFile) {
-        throw new UnsupportedOperationException();
+    public void generateCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException();
     }
 
     public void setValue(Expression e) {

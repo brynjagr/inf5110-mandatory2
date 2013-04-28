@@ -40,8 +40,7 @@ public class ClassVariable extends Expression {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public void generateCode(CodeFile codeFile) {
-        throw new UnsupportedOperationException();
+    public void generateCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException();
     }
 }

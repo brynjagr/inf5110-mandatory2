@@ -54,7 +54,22 @@ public class Program extends SyntaxUnit {
         main.checkWhetherMain();
     }
 
+    /*
+     * foreach declaration
+     *    generateCode
+     * set main method
+     */
     public void generateCode(CodeFile codeFile) {
 
+	/* Add Library functions */
+	for (Decl d : localSymbolTable.getLibraryFunctions()) {
+	    d.generateCode(codeFile);
+	}
+
+	for (Decl d : decls) {
+	    d.generateCode(codeFile);
+	}
+
+	codeFile.setMain("Main");
     }
 }

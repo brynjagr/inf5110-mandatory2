@@ -46,4 +46,24 @@ public abstract class SyntaxUnit {
     public boolean getError()  {
         return error;
     }
+
+    public static CodeType getCodeType(String type, CodeFile codeFile) {
+
+	switch (type) {
+	case "int":
+	    return new IntType.TYPE;
+	case "float":
+	    return new FloatType.TYPE;
+	case "bool":
+	    return new BoolType.TYPE;
+	case "string":
+	    return new StringType.TYPE;
+	case "null":
+	    throw new UnsupportedOperationException("Invalid Type?");
+	case "void":
+	    return new VoidType.TYPE;
+	default:
+	    return new RefType(codeFile.structNumber(type));
+	}
+    }
 }

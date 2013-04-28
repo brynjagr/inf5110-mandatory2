@@ -77,7 +77,12 @@ public class ClassDecl extends Decl {
 
     @Override
     public void generateCode(CodeFile codeFile) {
-        throw new UnsupportedOperationException();
+	codeFile.addStruct(name);
+	CodeStruct struct = new CodeStruct(name);
+	for (Decl d : varDeclList) {
+	    struct.addVariable(d.getName(), SyntaxUnit.getCodeType(d.getType(), codeFile));
+	}
+	codeFile.updateStruct(name);
     }
 
     public SymbolTable getSymboltable() {

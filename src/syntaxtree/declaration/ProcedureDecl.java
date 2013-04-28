@@ -99,4 +99,36 @@ public class ProcedureDecl extends FunctionDecl {
         outerSymbolTable.insertDecl(name, this);
     }
 
+    /*
+     * Generating code assuming this procedure is global.
+     */
+    public void generateCode(CodeFile codeFile) {
+
+	codeFile.addProcedure(getName());
+
+	CodeType type = SyntaxUnit.getCodeType(getType(), codeFile);
+	CodeProcedure proc = new CodeProcedure(getName(), type, codeFile);
+
+	// Add parameters to proc
+	for (ParamDecl pd : paramDeclList) {
+	    CodeType paramType = SyntaxUnit.getCodetype(pd.getType(), codeFile);
+	    proc.addParameter(pd.getName(), paramType);
+	}
+
+	for (Decl d : declList) {
+	    if (!(d instanceof VarDecl)) {
+		    throw new UnsupportedOperationException("Can't have procedure/function/class declarations in a procedure!");
+	    }
+
+	    proc.addLocalVariable(d.getName(), SyntaxUnit.getCodeType(d.getType(), codeFile));
+	}
+
+	for (Stmt s : stmtList) {
+	    s.generateCode(proc);
+	}
+
+	proc.addInstruction(new RETURN());
+        codeFile.updateProcedure(proc);	
+    }
+
 }
