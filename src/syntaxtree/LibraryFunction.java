@@ -1,6 +1,9 @@
 package syntaxtree;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.type.CodeType;
+
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.declaration.ParamDecl;
@@ -15,8 +18,9 @@ import java.util.List;
  */
 public class LibraryFunction extends ProcedureDecl {
 
-    public LibraryFunction(String name, List<ParamDecl> l) {
+    public LibraryFunction(String name, List<ParamDecl> l, String type) {
             super(name, l, null, null);
+	    super.type = type;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class LibraryFunction extends ProcedureDecl {
 
     @Override
     public void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError {
-        //To change body of implemented methods use File | Settings | File Templates.
+	// 
     }
 
     @Override
@@ -35,7 +39,7 @@ public class LibraryFunction extends ProcedureDecl {
 	codeFile.addProcedure(getName());
 	CodeType type = SyntaxUnit.getCodeType(getType(), codeFile);
 	CodeProcedure proc = new CodeProcedure(getName(), type, codeFile);
-	for (ParamDecl pd : l) {
+	for (ParamDecl pd : paramDeclList) {
 	    CodeType paramType = SyntaxUnit.getCodeType(getType(), codeFile);
 	    proc.addParameter(pd.getName(), paramType);
 	}

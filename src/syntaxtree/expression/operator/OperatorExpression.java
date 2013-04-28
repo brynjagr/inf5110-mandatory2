@@ -1,6 +1,7 @@
 package syntaxtree.expression.operator;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -17,7 +18,7 @@ public class OperatorExpression extends Expression {
     private Expression e1;
     private Expression e2;
 
-    public OperatorExpression(Operator op, Expression e2, Expression e1) {
+    public OperatorExpression(Operator op, Expression e1, Expression e2) {
         this.e2 = e2;
         this.e1 = e1;
         this.op = op;
@@ -37,11 +38,11 @@ public class OperatorExpression extends Expression {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, MainNotFoundError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         e1.checkCode(symbolTable);
         e2.checkCode(symbolTable);
 
-        checkSameType(e1.getType(), e2.getType());
+ checkSameType(e1.getType(), e2.getType());
 
         setType(e1, e2);
     }
@@ -64,6 +65,12 @@ public class OperatorExpression extends Expression {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	e1.generateInnerCode(proc);
+	e2.generateInnerCode(proc);
+	op.generateInnerCode(proc);
     }
 
     @Override

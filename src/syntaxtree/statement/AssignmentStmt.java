@@ -1,6 +1,7 @@
 package syntaxtree.statement;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -68,4 +69,8 @@ public class AssignmentStmt extends Stmt {
         throw new UnsupportedOperationException();
     }
 
+    public void generateInnerCode(CodeProcedure proc) {
+	e2.generateInnerCode(proc);
+	e1.generateStoreCode(proc);
+    }
 }

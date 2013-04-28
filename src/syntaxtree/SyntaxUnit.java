@@ -1,8 +1,11 @@
 package syntaxtree;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import error.*;
 import symboltable.SymbolTable;
+import bytecode.*;
+import bytecode.type.*;
 
 public abstract class SyntaxUnit {
 
@@ -17,9 +20,10 @@ public abstract class SyntaxUnit {
 
     public abstract String printAst();
 
-    public abstract void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError;
+    public abstract void checkCode(SymbolTable symbolTable) throws VariableNotDeclaredError, TypeNotSameError, FunctionNotDeclaredError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError;
 
     public abstract void generateCode(CodeFile codeFile);
+    public abstract void generateInnerCode(CodeProcedure proc);
 
     public void checkSameType(String t1, String t2) throws TypeNotSameError, TypeNotExistError {
 
@@ -51,17 +55,17 @@ public abstract class SyntaxUnit {
 
 	switch (type) {
 	case "int":
-	    return new IntType.TYPE;
+	    return IntType.TYPE;
 	case "float":
-	    return new FloatType.TYPE;
+	    return FloatType.TYPE;
 	case "bool":
-	    return new BoolType.TYPE;
+	    return BoolType.TYPE;
 	case "string":
-	    return new StringType.TYPE;
+	    return StringType.TYPE;
 	case "null":
 	    throw new UnsupportedOperationException("Invalid Type?");
 	case "void":
-	    return new VoidType.TYPE;
+	    return VoidType.TYPE;
 	default:
 	    return new RefType(codeFile.structNumber(type));
 	}

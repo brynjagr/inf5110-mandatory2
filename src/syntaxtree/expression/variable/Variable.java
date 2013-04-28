@@ -1,6 +1,9 @@
 package syntaxtree.expression.variable;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.STORELOCAL;
+import bytecode.instructions.STOREGLOBAL;
 import error.VariableNotDeclaredError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -45,8 +48,25 @@ public class Variable extends Expression {
 
     }
 
-    public void generateCode(CodeProcedure proc) {
+    public void generateCode(CodeFile proc) {
 	throw new UnsupportedOperationException();
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	
+	int num = proc.variableNumber(name);
+
+	// Global Variable
+        if(num == -1) {
+            num = proc.globalVariableNumber(name);
+	    proc.addInstruction(new STOREGLOBAL(num));
+        } else {
+            proc.addInstruction(new STORELOCAL(num));
+	}
+    }
+
+    public void generateStoreCode(CodeProcedure proc) {
+	generateInnerCode(proc);
     }
 
     public void setValue(Expression e) {

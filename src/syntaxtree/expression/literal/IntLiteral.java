@@ -1,5 +1,7 @@
 package syntaxtree.expression.literal;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.PUSHINT;
 import bytecode.CodeFile;
 import error.NotAVariableError;
 import symboltable.SymbolTable;
@@ -28,5 +30,10 @@ public class IntLiteral extends Literal {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+	proc.addInstruction(new PUSHINT(Integer.valueOf(super.val)));
     }
 }

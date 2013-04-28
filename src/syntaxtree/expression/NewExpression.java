@@ -1,6 +1,8 @@
 package syntaxtree.expression;
 
-import bytecode.CodeFile;
+import bytecode.CodeFile; 
+import bytecode.instructions.NEW;
+import bytecode.CodeProcedure;
 import error.ClassNotFoundError;
 import error.NotAVariableError;
 import symboltable.SymbolTable;
@@ -42,5 +44,10 @@ public class NewExpression extends Expression {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+	proc.addInstruction(new NEW(proc.structNumber(name)));
     }
 }

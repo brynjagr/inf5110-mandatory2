@@ -4,6 +4,7 @@ import syntaxtree.declaration.Decl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Collection;
 
 /**
  * User: brynjagr
@@ -84,5 +85,12 @@ public class SymbolTable {
         classTypes = new HashSet<String>();
     }
 
+    public Collection<Decl> getLibraryFunctions() {
+	
+	if (outerScopeSymbolTable == null) {
+	    return localDecls.values();
+	}
 
+	return outerScopeSymbolTable.getLibraryFunctions();
+    }
 }

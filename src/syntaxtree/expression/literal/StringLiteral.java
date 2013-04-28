@@ -1,6 +1,8 @@
 package syntaxtree.expression.literal;
 
+import bytecode.CodeProcedure;
 import bytecode.CodeFile;
+import bytecode.instructions.PUSHSTRING;
 import error.NotAVariableError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -28,5 +30,10 @@ public class StringLiteral extends Literal {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+	proc.addInstruction(new PUSHSTRING(proc.addStringConstant(super.val)));
     }
 }

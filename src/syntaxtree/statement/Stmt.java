@@ -1,6 +1,7 @@
 package syntaxtree.statement;
 
 import syntaxtree.SyntaxUnit;
+import bytecode.CodeProcedure;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,4 +16,7 @@ public abstract class Stmt extends SyntaxUnit{
         return "";
     }
 
+    public void generateInnerCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException(this + ": Need to implement this method...");
+    }
 }

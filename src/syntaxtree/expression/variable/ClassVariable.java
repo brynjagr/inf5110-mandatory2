@@ -1,5 +1,6 @@
 package syntaxtree.expression.variable;
 
+import bytecode.CodeProcedure;
 import bytecode.CodeFile;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -40,7 +41,7 @@ public class ClassVariable extends Expression {
         throw new UnsupportedOperationException();
     }
 
-    public void generateCode(CodeProcedure proc) {
+    public void generateCode(CodeFile proc) {
 	throw new UnsupportedOperationException();
     }
 }

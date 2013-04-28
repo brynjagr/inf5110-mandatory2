@@ -1,6 +1,7 @@
 package syntaxtree.statement;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 import syntaxtree.SyntaxUnit;
@@ -58,5 +59,11 @@ public class ElsePart extends SyntaxUnit {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	for (Stmt s : stmtList) {
+	    s.generateInnerCode(proc);
+	}
     }
 }

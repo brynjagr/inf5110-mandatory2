@@ -5,9 +5,17 @@ import error.Error;
 import symboltable.SymbolTable;
 import syntaxtree.statement.ReturnStmt;
 import syntaxtree.statement.Stmt;
+import syntaxtree.SyntaxUnit;
 
 import java.util.Iterator;
 import java.util.List;
+
+import bytecode.CodeFile;
+import bytecode.type.CodeType;
+import bytecode.CodeProcedure;
+import bytecode.instructions.RETURN;
+
+
 
 /**
  * User: brynjagr
@@ -21,13 +29,13 @@ public class ProcedureDecl extends FunctionDecl {
     }
 
     @Override
-    public void checkWhetherMain () throws MainMustBeProcedureError, MainCantTakeParameters {
+    public void checkWhetherMain () throws MainMustBeProcedureError, MainCantTakeParametersError {
         if (!name.equals("Main")) {
             throw new MainMustBeProcedureError();
         }
 
         if (paramDeclList.size() != 0) {
-            throw new MainCantTakeParameters();
+            throw new MainCantTakeParametersError();
         }
     }
 
@@ -97,6 +105,8 @@ public class ProcedureDecl extends FunctionDecl {
 
         // Prevent recursive calls
         outerSymbolTable.insertDecl(name, this);
+
+	super.type = "void";
     }
 
     /*
@@ -111,7 +121,7 @@ public class ProcedureDecl extends FunctionDecl {
 
 	// Add parameters to proc
 	for (ParamDecl pd : paramDeclList) {
-	    CodeType paramType = SyntaxUnit.getCodetype(pd.getType(), codeFile);
+	    CodeType paramType = SyntaxUnit.getCodeType(pd.getType(), codeFile);
 	    proc.addParameter(pd.getName(), paramType);
 	}
 
@@ -124,7 +134,7 @@ public class ProcedureDecl extends FunctionDecl {
 	}
 
 	for (Stmt s : stmtList) {
-	    s.generateCode(proc);
+	    s.generateInnerCode(proc);
 	}
 
 	proc.addInstruction(new RETURN());

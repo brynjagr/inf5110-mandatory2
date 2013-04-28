@@ -1,6 +1,9 @@
 package syntaxtree.declaration;
 
+import syntaxtree.SyntaxUnit;
 import bytecode.CodeFile;
+import bytecode.type.CodeType;
+import bytecode.CodeProcedure;
 import error.VariableAlreadyDeclaredError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;

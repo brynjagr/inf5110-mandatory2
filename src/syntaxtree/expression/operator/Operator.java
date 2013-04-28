@@ -1,5 +1,7 @@
 package syntaxtree.expression.operator;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.*;
 /**
  * User: Havard
  * Date: 09.03.13
@@ -21,5 +23,21 @@ public class Operator {
 
     public String getOperandType() {
         return this.type;
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	switch (val) {
+	    case "+":
+		proc.addInstruction(new ADD());
+		break;
+	case "<":
+	    proc.addInstruction(new LT());
+	    break;
+	case ">":
+	    proc.addInstruction(new GT());
+	    break;
+	default:
+	    throw new UnsupportedOperationException("Invalid operator: " + val);
+	}
     }
 }

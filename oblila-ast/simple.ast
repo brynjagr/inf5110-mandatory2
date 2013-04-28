@@ -1,35 +1,3 @@
 (Program
-	CLASS_DECL (NAME TestClass))
-	(PROC_DECL (TYPE null) (NAME TestProc)
-		PARAM_DECL var (TYPE int) (NAME toehuteoh))
-		PARAM_DECL (TYPE int) (NAME tehutehu))
-		PARAM_DECL var (TYPE int) (NAME hei))
-
-		(VAR_DECL (TYPE TestProc) (NAME t))
-		(VAR_DECL (TYPE int) (NAME i))
-		(PROC_DECL (TYPE null) (NAME TestProc2)
-			PARAM_DECL var (TYPE int) (NAME toehuteoh))
-			PARAM_DECL (TYPE int) (NAME tehutehu))
-			PARAM_DECL var (TYPE int) (NAME hei))
-
-			(VAR_DECL (TYPE int) (NAME i))
-
-			(CALL_STMT (NAME TestProc))
-		)
-		CLASS_DECL (NAME TestClass2)
-			(VAR_DECL (TYPE int) (NAME i))
-		)
-
-		(CALL_STMT (NAME TestProc2))
-		(RETURN_STMT (LOG_OP ||
-			(CALL_STMT (NAME Testa))
-			(LOG_OP &&
-				(CALL_STMT (NAME Test))
-				(LOG_OP &&
-					(CALL_STMT (NAME TestProc2))
-					(CALL_STMT (NAME TestProc3))
-				)
-			)
-		))
-	)
+	(PROC_DECL (TYPE void) (NAME Main))
 )

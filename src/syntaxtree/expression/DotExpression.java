@@ -1,6 +1,11 @@
 package syntaxtree.expression;
 
+import syntaxtree.SyntaxUnit;
+import bytecode.type.CodeType;
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.GETFIELD;
+import bytecode.instructions.PUTFIELD;
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.declaration.ClassDecl;
@@ -39,7 +44,7 @@ public class DotExpression extends Expression {
     }
 
     @Override
-    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, MainNotFoundError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, MainNotFoundError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
        // Both e1 and e2 must be variables
         e1.checkWhetherVariable();
         e2.checkWhetherVariable();
@@ -66,5 +71,28 @@ public class DotExpression extends Expression {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	
+	try {
+	    proc.addInstruction(new GETFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
+	} catch (VariableNotDeclaredError e) {
+	    throw new RuntimeException("Variable not declared!");
+	} catch (NotAVariableError e) {
+	    throw new RuntimeException("Expression is not a variable!");
+	}
+
+
+    }
+
+    public void generateStoreCode(CodeProcedure proc) {
+	try {
+	    proc.addInstruction(new PUTFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
+	} catch (VariableNotDeclaredError e) {
+	    throw new RuntimeException("Variable not declared!");
+	} catch (NotAVariableError e) {
+	    throw new RuntimeException("Expression is not a variable!");
+	}
     }
 }

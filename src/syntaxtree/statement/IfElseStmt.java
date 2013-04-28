@@ -1,5 +1,7 @@
 package syntaxtree.statement;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.*;
 import bytecode.CodeFile;
 import error.*;
 import symboltable.SymbolTable;
@@ -51,7 +53,7 @@ public class IfElseStmt extends Stmt {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, MainCantTakeParameters, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError, NotAFunctionError {
+    public void checkCode(SymbolTable outerSymbolTable) throws FunctionNotDeclaredError, MainNotFoundError, TypeNotSameError, NotAVariableError, FunctionMustReturnTypeError, ProcedureCantReturnValueError, TypeNotExistError, MainMustBeProcedureError, ProcedureUsedInExpressionError, VariableNotDeclaredError, WrongNumberOfActualParametersError, ClassNotFoundError, VariableAlreadyDeclaredError, NotAClassError, MissingReturnStmtError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
         test.checkCode(outerSymbolTable);
 
         checkSameType(test.getType(), "bool");
@@ -72,5 +74,28 @@ public class IfElseStmt extends Stmt {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+	test.generateInnerCode(proc);
+	int ifJmp = proc.addInstruction(new JMPFALSE(0));
+	for (Stmt s : stmtList) {
+	    s.generateInnerCode(proc);
+	}
+
+	int ifDone = -1;;
+	if (elsePart != null) {
+	    ifDone = proc.addInstruction(new JMP(0));
+	}
+
+	int ifEnd = proc.addInstruction(new NOP());
+	proc.replaceInstruction(ifJmp, new JMPFALSE(ifEnd));
+    
+	if (elsePart != null) {
+	    elsePart.generateInnerCode(proc);
+	    int elseEnd = proc.addInstruction(new NOP());
+	    proc.replaceInstruction(ifDone, new JMP(elseEnd));
+	}
     }
 }

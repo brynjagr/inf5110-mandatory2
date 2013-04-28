@@ -4,6 +4,7 @@ import error.NotAVariableError;
 import error.VariableNotDeclaredError;
 import syntaxtree.SyntaxUnit;
 import syntaxtree.expression.variable.Variable;
+import bytecode.CodeProcedure;
 
 /**
  * User: Havard
@@ -24,5 +25,13 @@ public abstract class Expression extends SyntaxUnit {
 
     public Variable getVariable() throws NotAVariableError {
         throw new NotAVariableError(this.type);
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException(this + ": Need to implement this method...");
+    }
+
+    public void generateStoreCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException();
     }
 }

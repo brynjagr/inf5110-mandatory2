@@ -1,14 +1,19 @@
 package syntaxtree.declaration;
 
-import bytecode.CodeFile;
 import error.*;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
 import syntaxtree.statement.ReturnStmt;
 import syntaxtree.statement.Stmt;
+import syntaxtree.SyntaxUnit;
 
 import java.util.Iterator;
 import java.util.List;
+
+import bytecode.CodeFile;
+import bytecode.type.CodeType;
+import bytecode.CodeProcedure;
+import bytecode.instructions.RETURN;
 
 /**
  * User: Havard
@@ -71,7 +76,7 @@ public class FunctionDecl extends Decl {
     }
 
     @Override
-    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, MainCantTakeParameters, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError {
+    public void checkCode(SymbolTable outerSymbolTable) throws VariableNotDeclaredError, FunctionNotDeclaredError, TypeNotSameError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, ClassNotFoundError, MainNotFoundError, NotAClassError, ProcedureUsedInExpressionError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
 
         localSymbolTable = new SymbolTable(outerSymbolTable);
 
@@ -141,7 +146,7 @@ public class FunctionDecl extends Decl {
 
 	// Add parameters to proc
 	for (ParamDecl pd : paramDeclList) {
-	    CodeType paramType = SyntaxUnit.getCodetype(pd.getType(), codeFile);
+	    CodeType paramType = SyntaxUnit.getCodeType(pd.getType(), codeFile);
 	    proc.addParameter(pd.getName(), paramType);
 	}
 
@@ -154,10 +159,9 @@ public class FunctionDecl extends Decl {
 	}
 
 	for (Stmt s : stmtList) {
-	    s.generateCode(proc);
+	    s.generateInnerCode(proc);
 	}
 
-	proc.addInstruction(new RETURN());
         codeFile.updateProcedure(proc);	
     }
 
@@ -169,6 +173,11 @@ public class FunctionDecl extends Decl {
     @Override
     public List<ParamDecl> getParamDeclList() {
         return paramDeclList;
+    }
+
+    @Override
+    public void checkWhetherCallable() {
+        // OK!
     }
 
     public ReturnStmt getReturnStmt() {

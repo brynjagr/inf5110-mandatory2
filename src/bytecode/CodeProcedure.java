@@ -175,4 +175,8 @@ public class CodeProcedure {
 			bytes[index + i] = insert[i];
 		}
 	}
+
+    public CodeFile getCodeFile() {
+	return codeFile;
+    }
 }

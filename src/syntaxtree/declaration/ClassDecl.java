@@ -1,11 +1,14 @@
 package syntaxtree.declaration;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.CodeStruct;
 import error.AlreadyDecalredError;
 import error.Error;
 import error.TypeAlreadyDecalredError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
+import syntaxtree.SyntaxUnit;
 
 import java.util.List;
 
@@ -82,7 +85,7 @@ public class ClassDecl extends Decl {
 	for (Decl d : varDeclList) {
 	    struct.addVariable(d.getName(), SyntaxUnit.getCodeType(d.getType(), codeFile));
 	}
-	codeFile.updateStruct(name);
+	codeFile.updateStruct(struct);
     }
 
     public SymbolTable getSymboltable() {

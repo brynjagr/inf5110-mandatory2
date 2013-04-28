@@ -100,10 +100,21 @@ public class Compiler {
 
         List<ParamDecl> l = new LinkedList<ParamDecl>();
         l.add(new ParamDecl("int", null));
-        library.insertDecl("printint", new LibraryFunction("printint", l));
+        library.insertDecl("printint", new LibraryFunction("printint", l, "void"));
         l = new LinkedList<ParamDecl>();
         l.add(new ParamDecl("float", null));
-        library.insertDecl("printfloat", new LibraryFunction("printfloat", l));
+        library.insertDecl("printfloat", new LibraryFunction("printfloat", l, "void"));
+
+        l = new LinkedList<ParamDecl>();
+        l.add(new ParamDecl("string", null));
+        library.insertDecl("printstr", new LibraryFunction("printstr", l, "void"));
+
+        l = new LinkedList<ParamDecl>();
+        l.add(new ParamDecl("string", null));
+        library.insertDecl("printline", new LibraryFunction("printline", l, "void"));
+
+	l = new LinkedList<ParamDecl>();
+        library.insertDecl("readint", new LibraryFunction("readint", l, "int"));
 
         //Start here! Must add library fuctions in test4
         return library;

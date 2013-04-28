@@ -1,5 +1,6 @@
 package syntaxtree;
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import error.*;
 import error.Error;
 import symboltable.SymbolTable;
@@ -29,7 +30,7 @@ public class Program extends SyntaxUnit {
         return sb.toString();
     }
 
-    public void checkCode(SymbolTable outerSymbolTable) throws MainNotFoundError, MainMustBeProcedureError, MainCantTakeParameters {
+    public void checkCode(SymbolTable outerSymbolTable) throws MainNotFoundError, MainMustBeProcedureError, MainCantTakeParametersError {
 
         this.localSymbolTable = new SymbolTable(outerSymbolTable);
         for (Decl d: decls) {
@@ -71,5 +72,9 @@ public class Program extends SyntaxUnit {
 	}
 
 	codeFile.setMain("Main");
+    }
+
+    public void generateInnerCode(CodeProcedure proc) {
+	throw new UnsupportedOperationException();
     }
 }
