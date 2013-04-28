@@ -75,6 +75,7 @@ public class DotExpression extends Expression {
 
     public void generateInnerCode(CodeProcedure proc) {
 	
+
 	try {
 	    proc.addInstruction(new GETFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
 	} catch (VariableNotDeclaredError e) {
@@ -88,6 +89,7 @@ public class DotExpression extends Expression {
 
     public void generateStoreCode(CodeProcedure proc) {
 	try {
+	    e2.generateInnerCode(proc);
 	    proc.addInstruction(new PUTFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
 	} catch (VariableNotDeclaredError e) {
 	    throw new RuntimeException("Variable not declared!");

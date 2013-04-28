@@ -87,7 +87,7 @@
         <java classname="compiler.Compiler" classpathref="path-run">
             <arg value="oblila-code/simple.obl"/>
             <arg value="oblila-ast/simple.ast"/>
-            <arg value=""/>
+            <arg value="oblila-bin/simple.bin"/>
         </java>
     </target>
 
@@ -170,6 +170,14 @@
         <java classname="runtime.VirtualMachine" classpathref="path-run">
             <arg value="-l"/>
             <arg value="code-examples/RunMe.bin"/>
+        </java>
+    </target>
+
+ <!-- List Simple -->
+    <target name="list-runsim" depends="init">
+        <java classname="runtime.VirtualMachine" classpathref="path-run">
+            <arg value="-l"/>
+            <arg value="oblila-bin/Simple.bin"/>
         </java>
     </target>
 

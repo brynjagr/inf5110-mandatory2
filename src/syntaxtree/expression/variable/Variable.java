@@ -2,8 +2,7 @@ package syntaxtree.expression.variable;
 
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
-import bytecode.instructions.STORELOCAL;
-import bytecode.instructions.STOREGLOBAL;
+import bytecode.instructions.*;
 import error.VariableNotDeclaredError;
 import symboltable.SymbolTable;
 import syntaxtree.Indent;
@@ -45,7 +44,6 @@ public class Variable extends Expression {
         } else {
             throw new VariableNotDeclaredError(name);
         }
-
     }
 
     public void generateCode(CodeFile proc) {
@@ -53,20 +51,37 @@ public class Variable extends Expression {
     }
 
     public void generateInnerCode(CodeProcedure proc) {
-	
+
+	System.out.println(decl.getType());
 	int num = proc.variableNumber(name);
 
-	// Global Variable
-        if(num == -1) {
-            num = proc.globalVariableNumber(name);
-	    proc.addInstruction(new STOREGLOBAL(num));
-        } else {
-            proc.addInstruction(new STORELOCAL(num));
-	}
+	    System.out.println(name + " " + num);
+
+	    // Global Variable
+	    if(num == -1) {
+		num = proc.globalVariableNumber(name);
+		System.out.println(num);
+		proc.addInstruction(new LOADGLOBAL(num));
+	    } else {
+		proc.addInstruction(new LOADLOCAL(num));
+	    }
     }
 
     public void generateStoreCode(CodeProcedure proc) {
-	generateInnerCode(proc);
+
+	System.out.println(decl.getType());
+	int num = proc.variableNumber(name);
+
+	    System.out.println(name + " " + num);
+
+	    // Global Variable
+	    if(num == -1) {
+		num = proc.globalVariableNumber(name);
+		System.out.println(num);
+		proc.addInstruction(new STOREGLOBAL(num));
+	    } else {
+		proc.addInstruction(new STORELOCAL(num));
+	    }
     }
 
     public void setValue(Expression e) {

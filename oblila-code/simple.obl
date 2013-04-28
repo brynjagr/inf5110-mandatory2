@@ -1,4 +1,29 @@
+var int test5;
+
+class Complex {
+      var float num1;
+      var int num2;
+      var bool num3;
+      var string num4;
+}
+
 proc Main() {
+     var Complex test1;
+     var Complex test2;
+     var Complex test3;
+     var int test4;
+
+     test1 := new Complex;
+     test2 := new Complex;	
+     test3 := new Complex;
+     test5 := 5;
+
+     test4 := test5 + 5;
+     printint(test4);
+     printint(test5);
+     
 
 }
+
+
 

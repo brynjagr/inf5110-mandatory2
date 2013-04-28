@@ -27,6 +27,10 @@ public abstract class Expression extends SyntaxUnit {
         throw new NotAVariableError(this.type);
     }
 
+    public String getName() {
+	throw new UnsupportedOperationException();
+    }
+
     public void generateInnerCode(CodeProcedure proc) {
 	throw new UnsupportedOperationException(this + ": Need to implement this method...");
     }

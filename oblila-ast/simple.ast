@@ -1,3 +1,45 @@
 (Program
-	(PROC_DECL (TYPE void) (NAME Main))
+	(VAR_DECL (TYPE int) (NAME test5))
+	CLASS_DECL (NAME Complex)
+		(VAR_DECL (TYPE float) (NAME num1))
+		(VAR_DECL (TYPE int) (NAME num2))
+		(VAR_DECL (TYPE bool) (NAME num3))
+		(VAR_DECL (TYPE string) (NAME num4))
+	)
+	(PROC_DECL (TYPE void) (NAME Main)
+		(VAR_DECL (TYPE Complex) (NAME test1))
+		(VAR_DECL (TYPE Complex) (NAME test2))
+		(VAR_DECL (TYPE Complex) (NAME test3))
+		(VAR_DECL (TYPE int) (NAME test4))
+
+		(ASSIGN STMT
+			(NAME test1)
+			(NEW (TYPE Complex))
+		)
+		(ASSIGN STMT
+			(NAME test2)
+			(NEW (TYPE Complex))
+		)
+		(ASSIGN STMT
+			(NAME test3)
+			(NEW (TYPE Complex))
+		)
+		(ASSIGN STMT
+			(NAME test5)
+			(INT_LITERAL 5)
+		)
+		(ASSIGN STMT
+			(NAME test4)
+			(ARIT_OP +
+				(NAME test5)
+				(INT_LITERAL 5)
+			)
+		)
+		(CALL_STMT (NAME printint)
+			(ACTUAL_PARAM (NAME test4))
+		)
+		(CALL_STMT (NAME printint)
+			(ACTUAL_PARAM (NAME test5))
+		)
+	)
 )
