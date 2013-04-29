@@ -35,6 +35,7 @@ public class VirtualMachine {
 				vm.run();
 			}
 		} catch (Exception e) {
+		    e.printStackTrace();
 			System.out.println("VM error: " + e);
 			// TODO: Remove this line:
 			//e.printStackTrace();

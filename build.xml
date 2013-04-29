@@ -174,9 +174,16 @@
     </target>
 
  <!-- List Simple -->
-    <target name="list-runsim" depends="init">
+    <target name="list-sim" depends="init">
         <java classname="runtime.VirtualMachine" classpathref="path-run">
             <arg value="-l"/>
+            <arg value="oblila-bin/Simple.bin"/>
+        </java>
+    </target>
+
+ <!-- Run Simple -->
+    <target name="run-sim" depends="init">
+        <java classname="runtime.VirtualMachine" classpathref="path-run">
             <arg value="oblila-bin/Simple.bin"/>
         </java>
     </target>

@@ -45,6 +45,8 @@ public class DotExpression extends Expression {
 
     @Override
     public void checkCode(SymbolTable symbolTable) throws FunctionNotDeclaredError, ClassNotFoundError, VariableAlreadyDeclaredError, MissingReturnStmtError, TypeNotExistError, VariableNotDeclaredError, TypeNotSameError, NotAClassError, ProcedureUsedInExpressionError, MainNotFoundError, NotAVariableError, MainMustBeProcedureError, FunctionMustReturnTypeError, WrongNumberOfActualParametersError, ProcedureCantReturnValueError, NotAFunctionError, MainCantTakeParametersError, NotCallableError {
+
+	System.out.println("CHECK DOT EXP!!");
        // Both e1 and e2 must be variables
         e1.checkWhetherVariable();
         e2.checkWhetherVariable();
@@ -75,8 +77,8 @@ public class DotExpression extends Expression {
 
     public void generateInnerCode(CodeProcedure proc) {
 	
-
 	try {
+	    e1.generateInnerCode(proc);
 	    proc.addInstruction(new GETFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
 	} catch (VariableNotDeclaredError e) {
 	    throw new RuntimeException("Variable not declared!");
@@ -88,8 +90,9 @@ public class DotExpression extends Expression {
     }
 
     public void generateStoreCode(CodeProcedure proc) {
+	System.out.println("hei hei");
 	try {
-	    e2.generateInnerCode(proc);
+	    e1.generateInnerCode(proc);
 	    proc.addInstruction(new PUTFIELD(proc.fieldNumber(e1.getType(), e2.getVariable().getName()), proc.structNumber(e1.getType())));
 	} catch (VariableNotDeclaredError e) {
 	    throw new RuntimeException("Variable not declared!");

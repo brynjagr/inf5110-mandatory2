@@ -52,10 +52,10 @@ public class Variable extends Expression {
 
     public void generateInnerCode(CodeProcedure proc) {
 
-	System.out.println(decl.getType());
+	//	System.out.println(decl.getType());
 	int num = proc.variableNumber(name);
 
-	    System.out.println(name + " " + num);
+	    System.out.println("LOAD: " + name + " " + num);
 
 	    // Global Variable
 	    if(num == -1) {
@@ -69,10 +69,10 @@ public class Variable extends Expression {
 
     public void generateStoreCode(CodeProcedure proc) {
 
-	System.out.println(decl.getType());
+	//System.out.println(decl.getType());
 	int num = proc.variableNumber(name);
 
-	    System.out.println(name + " " + num);
+	    System.out.println("STORE: " + name + " " + num);
 
 	    // Global Variable
 	    if(num == -1) {
