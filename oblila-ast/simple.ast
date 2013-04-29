@@ -4,15 +4,40 @@
 		(VAR_DECL (TYPE float) (NAME num1))
 		(VAR_DECL (TYPE int) (NAME num2))
 	)
+	CLASS_DECL (NAME ComplexComplex)
+		(VAR_DECL (TYPE Complex) (NAME comp))
+	)
+	CLASS_DECL (NAME ComplexComplexComplex)
+		(VAR_DECL (TYPE ComplexComplex) (NAME comp))
+	)
 	(PROC_DECL (TYPE void) (NAME Main)
 		(VAR_DECL (TYPE Complex) (NAME test))
+		(VAR_DECL (TYPE ComplexComplex) (NAME test2))
+		(VAR_DECL (TYPE ComplexComplexComplex) (NAME test3))
 
 		(ASSIGN STMT
 			(NAME test)
 			(NEW (TYPE Complex))
 		)
 		(ASSIGN STMT
-FIX ME!!!			(FLOAT_LITERAL 1.0)
+FIX ME!!!			(INT_LITERAL 3)
+		)
+		(ASSIGN STMT
+			(NAME test2)
+			(NEW (TYPE ComplexComplex))
+		)
+		(ASSIGN STMT
+FIX ME!!!			(NAME test)
+		)
+		(ASSIGN STMT
+			(NAME test3)
+			(NEW (TYPE ComplexComplexComplex))
+		)
+		(ASSIGN STMT
+FIX ME!!!			(NAME test2)
+		)
+		(CALL_STMT (NAME printint)
+			(ACTUAL_PARAM FIX ME!!!)
 		)
 	)
 )

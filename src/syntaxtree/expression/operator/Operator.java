@@ -27,17 +27,41 @@ public class Operator {
 
     public void generateInnerCode(CodeProcedure proc) {
 	switch (val) {
-	    case "+":
-		proc.addInstruction(new ADD());
-		break;
+	case "/":
+	    proc.addInstruction(new DIV());
+	    break;
+	case "#":
+	    proc.addInstruction(new EXP());
+	    break;
+	case "+":
+	    proc.addInstruction(new ADD());
+	    break;
+	case "-":
+	    proc.addInstruction(new SUB());
+	    break;
+	case "*":
+	    proc.addInstruction(new MUL());
+	    break;
+	case "<>":
+	    proc.addInstruction(new NEQ());	    
+	    break;
+	case "=":
+	    proc.addInstruction(new EQ());
+	    break;
 	case "<":
 	    proc.addInstruction(new LT());
+	    break;
+	case "<=":
+	    proc.addInstruction(new LTEQ());
+	    break;
+	case ">=":
+	    proc.addInstruction(new GTEQ());
 	    break;
 	case ">":
 	    proc.addInstruction(new GT());
 	    break;
 	default:
-	    throw new UnsupportedOperationException("Invalid operator: " + val);
+	    throw new UnsupportedOperationException("Invalid operator: " + val + " " + type + " " + this + " " + this.printAst());
 	}
     }
 }

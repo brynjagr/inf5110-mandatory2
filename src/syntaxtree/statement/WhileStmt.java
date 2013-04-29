@@ -1,5 +1,7 @@
 package syntaxtree.statement;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.*;
 import bytecode.CodeFile;
 import error.*;
 import error.Error;
@@ -69,5 +71,17 @@ public class WhileStmt extends Stmt {
     @Override
     public void generateCode(CodeFile codeFile) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+
+	int tst = proc.addInstruction(new NOP());
+
+	for (Stmt s : stmtList) {
+	    s.generateInnerCode(proc);
+	}
+	test.generateInnerCode(proc);
+	proc.addInstruction(new JMPTRUE(tst));	
     }
 }

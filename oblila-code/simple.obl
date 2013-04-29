@@ -5,10 +5,28 @@ class Complex {
       var int num2;
 }
 
+class ComplexComplex {
+      var Complex comp;
+}
+
+class ComplexComplexComplex {
+      var ComplexComplex comp;
+}
+
 proc Main() {
      var Complex test;
+     var ComplexComplex test2;
+     var ComplexComplexComplex test3;
+
      test := new Complex;
-     test.num1 := 1.0;
+     test.num2 := 3;
+     test2 := new ComplexComplex;
+     test2.comp := test;
+     test3 := new ComplexComplexComplex;
+     test3.comp := test2;
+     printint(test3.comp.comp.num2);
+     
+
 }
 
 

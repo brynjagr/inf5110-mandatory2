@@ -1,5 +1,7 @@
 package syntaxtree.expression.literal;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.PUSHNULL;
 import bytecode.CodeFile;
 import error.NotAVariableError;
 import symboltable.SymbolTable;
@@ -34,5 +36,10 @@ public class NullLiteral extends Literal {
     @Override
     public void generateCode(CodeFile codeFile) {
        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void generateInnerCode(CodeProcedure proc) {
+	proc.addInstruction(new PUSHNULL());
     }
 }

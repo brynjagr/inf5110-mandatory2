@@ -7,7 +7,7 @@ package syntaxtree.expression.operator.relation;
  */
 public class LessThanRelOp extends RelOp {
 
-    private final static String val = "";
+    private final static String val = "<";
 
     public LessThanRelOp() {
         super(val);
